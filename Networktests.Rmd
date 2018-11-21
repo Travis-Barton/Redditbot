@@ -1,0 +1,194 @@
+---
+title: "Project Sandbox"
+author: "Travis Barton"
+date: "11/7/2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r data and functions}
+library(readr)
+library(neuralnet)
+library(LilRhino)
+KoP_data <- read_csv("~/Redditbot/KittenOrPolitics_data.csv", 
+    col_names = FALSE)
+
+KoP_data$X1 <- KoP_data$X1 - 1
+
+dat <- Cross_val_maker(KoP_data, .2)
+
+
+train <- dat$Train
+test <- dat$Test
+f <- paste(names(KoP_data)[2:301], collapse = "+")
+f <- paste("X1~", f)
+f = as.formula(f)
+
+
+net <- neuralnet(f, data = train, hidden = c(100, 10, 2), linear.output = T)
+
+pred <- compute(net, test[,2:301])
+
+percent(table(round(pred$net.result), test$X1))
+
+
+```
+
+
+```{r Round 2 functions}
+library(readr)
+library(neuralnet)
+library(LilRhino)
+DataPrep <- function(s = 69, s2 = 12, testsize = 1000) 
+{
+  res <- list(train = {}, test = {}, senttrain = {}, senttest = {})
+  L1data <- read_csv("~/Redditbot/Layer1.txt", 
+    col_names = FALSE)
+
+  labels <- read_csv("~/Redditbot/labels.csv", 
+      col_names = FALSE)
+  labels <- labels$X2
+  labels <- factor(labels, labels = c(seq(0, 11, 1)))
+  sentences <- read_csv("~/Redditbot/Training_data.csv")
+  
+  ### Sample down to min
+  
+  lowest <- min(table(labels))
+  for(i in 1:11)
+  {
+    index <- which(labels == i)
+    set.seed(s)
+    index2 <- sample(index, lowest)
+    newrows <- cbind(L1data[index2, ], labels[index2])
+    res$train <- rbind(res$train, newrows)
+    res$senttrain <- rbind(res$senttrain, sentences[index2, 2:4])
+  }
+  for(i in 1:11)
+  {
+    index <- which(labels[-index2] == i)
+    set.seed(s2)
+    index3 <- sample(index, testsize)
+    newrows <- cbind(L1data[index3, ], labels[index3])
+    res$test <- rbind(res$test, newrows)
+    res$senttest <- rbind(res$senttest, sentences[index3, 2:4])
+  }
+  
+  
+  return(res)
+}
+
+dat <- DataPrep(testsize = 1769)
+
+########### Sample down to min  ##########
+
+
+
+train <- as.data.frame(dat$train)
+test <- as.data.frame(dat$test)
+
+
+colnames(train) = c(paste("V", seq(1, 300, 1), sep = ""), "labels")
+f <- paste(names(train)[1:100], collapse = "+")
+f <- paste("labels ~ ", f)
+f = as.formula(f)
+names(test) = names(train)
+
+train$labels <- as.numeric(train$labels) - 1
+test$labels <- as.numeric(test$labels) - 1
+
+
+
+s <- Sys.time()
+net2 <- neuralnet(f, data = train, hidden = c(50), linear.output = T, lifesign = "full")
+Codes_done("Network ran", paste("It took: ", (Sys.time()-s), " Seconds", sep = ""), sound = T)
+
+
+pred2 <- compute(net2, test[,1:100])
+
+table(test2$labels, round(pred2$net.result))
+unique(pred2$net.result)
+```
+
+
+
+```{r}
+train_temp <- train2
+test_temp <- test2
+for(i in 1:nrow(test2))
+{
+  #train_temp$labels[i] = ifelse(train2$labels[i] == 9, 1, 0)
+  test_temp$labels[i] = ifelse(test2$labels[i] == 9, 1, 0)
+}
+for(i in 1:nrow(train2))
+{
+  train_temp$labels[i] = ifelse(train2$labels[i] == 9, 1, 0)
+}
+
+s <- Sys.time()
+net2 <- neuralnet(f, data = train_temp, hidden = c(100, 10, 2), linear.output = T, lifesign = "full")
+LilRhino::Codes_done("Network ran", paste("It took: ", (Sys.time()-s), " Seconds", sep = ""), sound = T)
+
+
+pred2 <- compute(net2, test2[,1:300])
+
+
+percent(table(round(pred2$net.result), train_temp$labels))
+```
+
+
+```{r holding stuff}
+######
+m <- model.matrix(~ labels+X1+X2+X3+X4+X5+X6+X7+X8+X9+X10+X11+X12+X13+X14+X15+X16+X17+X18+X19+X20+X21+X22+X23+X24+X25+X26+X27+X28+X29+X30+X31+X32+X33+X34+X35+X36+X37+X38+X39+X40+X41+X42+X43+X44+X45+X46+X47+X48+X49+X50+X51+X52+X53+X54+X55+X56+X57+X58+X59+X60+X61+X62+X63+X64+X65+X66+X67+X68+X69+X70+X71+X72+X73+X74+X75+X76+X77+X78+X79+X80+X81+X82+X83+X84+X85+X86+X87+X88+X89+X90+X91+X92+X93+X94+X95+X96+X97+X98+X99+X100+X101+X102+X103+X104+X105+X106+X107+X108+X109+X110+X111+X112+X113+X114+X115+X116+X117+X118+X119+X120+X121+X122+X123+X124+X125+X126+X127+X128+X129+X130+X131+X132+X133+X134+X135+X136+X137+X138+X139+X140+X141+X142+X143+X144+X145+X146+X147+X148+X149+X150+X151+X152+X153+X154+X155+X156+X157+X158+X159+X160+X161+X162+X163+X164+X165+X166+X167+X168+X169+X170+X171+X172+X173+X174+X175+X176+X177+X178+X179+X180+X181+X182+X183+X184+X185+X186+X187+X188+X189+X190+X191+X192+X193+X194+X195+X196+X197+X198+X199+X200+X201+X202+X203+X204+X205+X206+X207+X208+X209+X210+X211+X212+X213+X214+X215+X216+X217+X218+X219+X220+X221+X222+X223+X224+X225+X226+X227+X228+X229+X230+X231+X232+X233+X234+X235+X236+X237+X238+X239+X240+X241+X242+X243+X244+X245+X246+X247+X248+X249+X250+X251+X252+X253+X254+X255+X256+X257+X258+X259+X260+X261+X262+X263+X264+X265+X266+X267+X268+X269+X270+X271+X272+X273+X274+X275+X276+X277+X278+X279+X280+X281+X282+X283+X284+X285+X286+X287+X288+X289+X290+X291+X292+X293+X294+X295+X296+X297+X298+X299+X300
+, data = L1data)
+
+
+```
+
+```{r reduced sample}
+train2.1 = matrix(NA, nrow = 1426*12, ncol = 302)
+for(i in 1:12)
+{
+  temp = which(train2$labels == i)
+}
+```
+
+```{r All binary models}
+### First things first... reduce training data so that you have the same number of points as the lowest set (or close to it)
+models <- list(Names = c("physics","bio","med","geo","astro","chem","eng",       "neuro","soc","maths", "computing", "psych"), mods = {}, times = {}, acc = {})
+preds = matrix(0, ncol = nrow(train2), nrow = 12)
+for(j in 1:12)
+{
+  train_temp <- train2
+  test_temp <- test2
+  for(i in 1:nrow(test2))
+  {
+    test_temp$labels[i] = ifelse(test2$labels[i] == j, 1, 0)
+  }
+  for(i in 1:nrow(train2))
+  {
+    train_temp$labels[i] = ifelse(train2$labels[i] == j, 1, 0)
+  }
+  
+  s <- Sys.time()
+  net2 <- neuralnet(f, data = test_temp, hidden = c(100, 10, 2), linear.output = T, lifesign = "full")
+  models$times[j] = Sys.time() - s
+  models$mods[j] = net2
+
+  
+  
+  preds[j,] <- compute(net2, train2[,1:300])
+  
+  
+  models$acc[j] = percent(table(round(pred2$net.result), train_temp$labels))
+  
+}
+
+
+
+```
+
+
+
