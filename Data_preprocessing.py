@@ -21,7 +21,7 @@ Layer2Data = Layer2Data.iloc[:, 1:]
 
 for i in range(Layer2Data.shape[0]):
     point = Layer2Data.iloc[i, 1]
-    if point[0:2] == "b'" or point[0:2] == 'b"':
+    if point[0:2] == "\b'" or point[0:2] == '\b"':
         point = point[2:]
         point.replace("\'", "")
         point.replace('\"', '')
@@ -90,7 +90,7 @@ def Turn_into_Spacy(data, tags = False):
         docs.append(temp)
     textvectors = [[] for i in range(data.shape[0])]
     for i in range(data.shape[0]):
-        print(docs[i])
+        #print(docs[i])
         textvectors[i] = nlp(docs[i]).vector
        
     return(textvectors)

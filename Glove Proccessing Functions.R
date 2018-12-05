@@ -3,6 +3,7 @@ library(text2vec)
 library(LilRhino)
 library(readr)
 library(tokenizers)
+library(keras)
 askscience_Data <- read_csv("~/Redditbot/askscience_Data.csv")
 layer1data <- read_csv("~/Redditbot/Training_data.csv")
 Create_Word_Vectors<- function(sentences, id)
@@ -72,13 +73,15 @@ Sentence_Vectorizer <- function(sent, method = "avg", word_vectors)
 }
 Data_Base_Maker <- function(data, method = 'avg', word_vectors)
 {
+  pb <- txtProgressBar(max = length(data), style = 3)
   newdata = matrix(0,nrow = length(data), ncol = 50)
   for(i in 1:length(data))
   {
     temp <- as.numeric(Sentence_Vectorizer(data[i], method = method, word_vectors= word_vectors))
     newdata[i,] = temp
+    setTxtProgressBar(pb, i)
   }
-  return(as.data.frame(newdata[-1,]))
+  return(as.data.frame(newdata))
 }
 Large_Word_Vectors <- read.table("~/Redditbot/glove.6B/glove.6B.50d.txt", sep = " ", header = FALSE,
                    quote = NULL, comment.char = "", row.names = 1,
@@ -96,11 +99,36 @@ One_Hot_Maker <- function(outputs)
   return(y_labs)
 }
 
+askscience_Data <- askscience_Data[-c(which(askscience_Data$tag == 'meta'), which(is.na(askscience_Data$tag))),]
 
 word_vectors <- Create_Word_Vectors(c(askscience_Data$Title, layer1data$title), seq(1,length(askscience_Data$Title) + length(layer1data$title), 1))
 Train_my_emb <- Data_Base_Maker(askscience_Data$Title, 'avg', word_vectors)
 Train_glove_emb <- Data_Base_Maker(askscience_Data$Title, 'avg', Large_Word_Vectors)
 Codes_done("Done", "Word Vectors trained")
+
+#### Train and Test creation ####
+set.seed(69)
+dat_my <- cbind(Train_my_emb, askscience_Data$tag) %>%
+  Cross_val_maker(.2)
+train_my <- dat_my$Train[,-51]
+y_train_my <- One_Hot_Maker(dat_my$Train[,51])
+test_my <- dat_my$Test
+y_test_my <- One_Hot_Maker(dat_my$Test[,51])
+
+dat_glove <- cbind(Train_glove_emb, askscience_Data$tag) %>%
+  Cross_val_maker(.2)
+train_glove <- dat_glove$Train[,-51]
+y_train_glove <- One_Hot_Maker(dat_glove$Train[,51])
+test_glove <- dat_glove$Test
+y_test_glove <- One_Hot_Maker(dat_glove$Test[,51])
+
+
+
+
+
+
+
+
 ########### tests ########
 
 tt <- (word_vectors["i", ] + word_vectors["love", ] + word_vectors["physics", ])/3
