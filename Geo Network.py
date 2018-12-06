@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Mon Oct 22 23:25:46 2018
+Created on Wed Dec  5 14:58:44 2018
 
 @author: travisbarton
 """
+
+
 import numpy as np
 import itertools
 from sklearn.model_selection import train_test_split
@@ -140,12 +142,12 @@ data = pd.read_csv("/Users/travisbarton/Documents/Github/Redditbot/askscience_Da
 noise = pd.read_csv("/Users/travisbarton/Documents/Github/Redditbot/Training_data.csv")
 data = data.iloc[:, 1:]
 noise = noise.iloc[:,1:]
-noise = Noise_maker(noise, 'physics')
+noise = Noise_maker(noise, 'geo')
 
 Layer2_Spacy_vector = Turn_into_Spacy(data)
 Layer1_Spacy_vector = Turn_into_Spacy(noise)
-data.tag = Sub_treater(data.tag, ['physics'])
-noise.iloc[:,2] = Sub_treater(noise.iloc[:,2], ['physics'])
+data.tag = Sub_treater(data.tag, ['geo'])
+noise.iloc[:,2] = Sub_treater(noise.iloc[:,2], ['geo'])
 
 
 dat = np.empty([(data.shape[0]+noise.shape[0]), 301])
@@ -192,12 +194,11 @@ model.add(Dense(2, activation = 'softmax'))
 model.compile(loss='binary_crossentropy', 
               optimizer='adam', 
               metrics=['accuracy'])
-filepath="Physics_Models/weights-improvement-{val_acc:.2f}.hdf5"
+filepath="Geo_Models/weights-improvement-{val_acc:.2f}.hdf5"
 checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, 
                              save_best_only=True, mode='max')
 callbacks_list = [checkpoint]
 
-#model.load_weights("Physics_Models/weights-improvement-148-0.86.hdf5")
 model_history = model.fit(X_train[:,:300], y_train, epochs=20, batch_size=30, 
                           verbose = 1,
                           validation_data =[X_test[:,:300], y_test]
@@ -217,27 +218,14 @@ plt.plot(model_history.history['loss'])
 plt.plot(model_history.history['val_loss'])
 plt.xticks(range(20))
 
-plt.savefig("Physics Performance.png")
+plt.savefig("Geo Performance.png")
 
-model.load_weights("Physics_Models/weights-improvement-0.87.hdf5")
+model.load_weights("Geo_Models/weights-improvement-0.92.hdf5")
 
-physpreds = model.predict(X_test[:,:300])
+geopreds = model.predict(X_test[:,:300])
 
 
-Percent(y_test, physpreds)        
-confm = confusion_matrix(Pred_to_num(y_test), Pred_to_num(physpreds))
+Percent(y_test, geopreds)        
+confm = confusion_matrix(Pred_to_num(y_test), Pred_to_num(geopreds))
 confm
-confm/sum(sum(confm))
-plot_confusion_matrix(confm, [0,1], normalize = True, title = "Is Physics?")
-
-
-
-
-
-
-
-
-
-
-
-        
+plot_confusion_matrix(confm, [0,1], normalize = True, title = "Is Geo?")

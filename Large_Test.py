@@ -207,7 +207,7 @@ model.add(Dense(50, activation = 'sigmoid'))
 model.add(Dense(len(subs)+1, activation = 'softmax'))        
         
 model.compile(loss='categorical_crossentropy', 
-              optimizer='sgd', 
+              optimizer='adam', 
               metrics=['accuracy'])
 #model.load_weights("Physics_Models/weights-improvement-148-0.86.hdf5")
 model_history = model.fit(X_train[:,:300], y_train, epochs=200, batch_size=50, 
@@ -289,7 +289,7 @@ model.add(Dense(50, activation = 'sigmoid'))
 model.add(Dense(len(subs)+1, activation = 'softmax'))        
         
 model.compile(loss='categorical_crossentropy', 
-              optimizer='sgd', 
+              optimizer='adam', 
               metrics=['accuracy'])
 #model.load_weights("Physics_Models/weights-improvement-148-0.86.hdf5")
 model_history = model.fit(X_train[:,:300], y_train, epochs=200, batch_size=50, 
@@ -371,7 +371,7 @@ model.add(Dense(50, activation = 'sigmoid'))
 model.add(Dense(len(subs)+1, activation = 'softmax'))        
         
 model.compile(loss='categorical_crossentropy', 
-              optimizer='sgd', 
+              optimizer='adam', 
               metrics=['accuracy'])
 #model.load_weights("Physics_Models/weights-improvement-148-0.86.hdf5")
 model_history = model.fit(X_train[:,:300], y_train, epochs=200, batch_size=50, 
@@ -454,7 +454,7 @@ model.add(Dense(50, activation = 'sigmoid'))
 model.add(Dense(len(subs)+1, activation = 'softmax'))        
         
 model.compile(loss='categorical_crossentropy', 
-              optimizer='sgd', 
+              optimizer='adam', 
               metrics=['accuracy'])
 #model.load_weights("Physics_Models/weights-improvement-148-0.86.hdf5")
 model_history = model.fit(X_train[:,:300], y_train, epochs=200, batch_size=50, 
@@ -538,7 +538,7 @@ model.add(Dense(50, activation = 'sigmoid'))
 model.add(Dense(len(subs)+1, activation = 'softmax'))        
         
 model.compile(loss='categorical_crossentropy', 
-              optimizer='sgd', 
+              optimizer='adam', 
               metrics=['accuracy'])
 #model.load_weights("Physics_Models/weights-improvement-148-0.86.hdf5")
 model_history = model.fit(X_train[:,:300], y_train, epochs=200, batch_size=50, 
@@ -622,7 +622,7 @@ model.add(Dense(50, activation = 'sigmoid'))
 model.add(Dense(len(subs)+1, activation = 'softmax'))        
         
 model.compile(loss='categorical_crossentropy', 
-              optimizer='sgd', 
+              optimizer='adam', 
               metrics=['accuracy'])
 #model.load_weights("Physics_Models/weights-improvement-148-0.86.hdf5")
 model_history = model.fit(X_train[:,:300], y_train, epochs=200, batch_size=50, 
@@ -650,4 +650,9 @@ accs.append(Percent(y_test, preds))
 plt.figure()
 plt.subplot(222)
 plt.plot(accs)
-        
+plt.title("How do classes \n relate to accuracy")
+plt.ylabel("Acc")
+plt.xlabel("Number of classes")
+plt.xticks([0, 1, 2, 3, 4, 5])
+plt.yticks([.6, .65, .70, .75, .8, .85])
+plt.savefig("class performance.png")

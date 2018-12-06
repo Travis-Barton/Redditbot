@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Mon Oct 22 23:25:46 2018
+Created on Wed Dec  5 15:13:48 2018
 
 @author: travisbarton
 """
+
+
+
 import numpy as np
 import itertools
 from sklearn.model_selection import train_test_split
@@ -25,6 +28,8 @@ from sklearn.metrics import confusion_matrix
 from random import choice, sample
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
+
+
 
 
 def Turn_into_Spacy(data, tags = False):
@@ -48,11 +53,13 @@ def Turn_into_Spacy(data, tags = False):
     return(textvectors)
     
 
+
 def grouper(vec):
     for i in range(len(vec)):
         if vec[i] == 'meta' or vec[i] != vec[i]:
             vec[i] = 'other'
     return(vec)
+
 
     
 def Sub_treater(vec, sub):
@@ -61,12 +68,14 @@ def Sub_treater(vec, sub):
             vec[i] = 'Not_{}'.format(sub)
     return(vec)
 
+
     
 def Pred_to_num(pred):
     results = []
     for i in range(pred.shape[0]):
         results.append(int(max(np.where(pred[i,:] == max(pred[i,:])))))
     return(results)
+
 
     
 def Percent(truth, test):
@@ -78,7 +87,9 @@ def Percent(truth, test):
             correct += 1
     return(correct/truth.shape[0])
 
+
     
+
 
 def Noise_maker(data, sub):
     isindex = np.where(noise.iloc[:,2] == sub)
@@ -100,6 +111,7 @@ def Noise_maker(data, sub):
     
   
 
+
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
                           title='Confusion matrix',
@@ -114,7 +126,9 @@ def plot_confusion_matrix(cm, classes,
     else:
         print('Confusion matrix, without normalization')
 
+
     print(cm)
+
 
     plt.imshow(cm, interpolation='nearest', cmap=cmap)
     plt.title(title)
@@ -123,6 +137,7 @@ def plot_confusion_matrix(cm, classes,
     plt.xticks(tick_marks, classes, rotation=45)
     plt.yticks(tick_marks, classes)
 
+
     fmt = '.2f' if normalize else 'd'
     thresh = cm.max() / 2.
     for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
@@ -130,22 +145,28 @@ def plot_confusion_matrix(cm, classes,
                  horizontalalignment="center",
                  color="white" if cm[i, j] > thresh else "black")
 
+
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
     plt.tight_layout()
 nlp = spacy.load('en_vectors_web_lg')
 
 
+
+
 data = pd.read_csv("/Users/travisbarton/Documents/Github/Redditbot/askscience_Data.csv")
 noise = pd.read_csv("/Users/travisbarton/Documents/Github/Redditbot/Training_data.csv")
 data = data.iloc[:, 1:]
 noise = noise.iloc[:,1:]
-noise = Noise_maker(noise, 'physics')
+noise = Noise_maker(noise, 'astro')
+
 
 Layer2_Spacy_vector = Turn_into_Spacy(data)
 Layer1_Spacy_vector = Turn_into_Spacy(noise)
-data.tag = Sub_treater(data.tag, ['physics'])
-noise.iloc[:,2] = Sub_treater(noise.iloc[:,2], ['physics'])
+data.tag = Sub_treater(data.tag, ['astro'])
+noise.iloc[:,2] = Sub_treater(noise.iloc[:,2], ['astro'])
+
+
 
 
 dat = np.empty([(data.shape[0]+noise.shape[0]), 301])
@@ -160,13 +181,18 @@ dat[data.shape[0]:,300] = pd.factorize(noise.iloc[:,2])[0]
 onehot_encoder = OneHotEncoder(sparse=False)       
         
 
+
 X_train, X_test, y_train, y_test = train_test_split(dat[0:data.shape[0],:300], 
                                                     dat[0:data.shape[0],300], 
                                                     test_size=0.25, 
                                                     random_state=100)   
 
+
 #X_train = np.vstack([dat[data.shape[0]:,0:300], X_train])
 #y_train = np.concatenate([dat[data.shape[0]:, 300], y_train])
+
+
+
 
 
 
@@ -174,10 +200,13 @@ X_train, X_test, y_train, y_test = train_test_split(dat[0:data.shape[0],:300],
 y_train = y_train.reshape(len(y_train), 1).astype(int)
 y_test = y_test.reshape(len(y_test), 1).astype(int)  
 
+
 y_train = onehot_encoder.fit_transform(y_train)
 y_test = onehot_encoder.fit_transform(y_test)   
 
+
 model = Sequential()
+
 
 model.add(Dense(50, input_dim = 300, activation = 'linear'))
 model.add(LeakyReLU(alpha=.001))
@@ -192,16 +221,17 @@ model.add(Dense(2, activation = 'softmax'))
 model.compile(loss='binary_crossentropy', 
               optimizer='adam', 
               metrics=['accuracy'])
-filepath="Physics_Models/weights-improvement-{val_acc:.2f}.hdf5"
+filepath="Astro_Models/weights-improvement-{val_acc:.2f}.hdf5"
 checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, 
                              save_best_only=True, mode='max')
 callbacks_list = [checkpoint]
 
-#model.load_weights("Physics_Models/weights-improvement-148-0.86.hdf5")
+
 model_history = model.fit(X_train[:,:300], y_train, epochs=20, batch_size=30, 
                           verbose = 1,
                           validation_data =[X_test[:,:300], y_test]
                           , callbacks=callbacks_list)
+
 
 plt.figure()
 plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=2)
@@ -217,27 +247,20 @@ plt.plot(model_history.history['loss'])
 plt.plot(model_history.history['val_loss'])
 plt.xticks(range(20))
 
-plt.savefig("Physics Performance.png")
 
-model.load_weights("Physics_Models/weights-improvement-0.87.hdf5")
-
-physpreds = model.predict(X_test[:,:300])
+plt.savefig("Astro Performance.png")
 
 
-Percent(y_test, physpreds)        
-confm = confusion_matrix(Pred_to_num(y_test), Pred_to_num(physpreds))
+model.load_weights("Astro_Models/weights-improvement-0.95.hdf5")
+
+
+astropreds = model.predict(X_test[:,:300])
+
+
+
+
+Percent(y_test, astropreds)        
+confm = confusion_matrix(Pred_to_num(y_test), Pred_to_num(astropreds))
 confm
-confm/sum(sum(confm))
-plot_confusion_matrix(confm, [0,1], normalize = True, title = "Is Physics?")
+plot_confusion_matrix(confm, [0,1], normalize = True, title = "Is Astro?")
 
-
-
-
-
-
-
-
-
-
-
-        

@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Mon Oct 22 23:25:46 2018
+Created on Wed Dec  5 15:18:03 2018
 
 @author: travisbarton
 """
+
 import numpy as np
 import itertools
 from sklearn.model_selection import train_test_split
@@ -58,8 +59,16 @@ def grouper(vec):
 def Sub_treater(vec, sub):
     for i in range(len(vec)):
         if vec[i] not in sub:
-            vec[i] = 'Not_{}'.format(sub)
+            vec[i] = 'Not_Other'
     return(vec)
+
+    
+def Sub_treater_other(vec, sub):
+   for i in range(len(vec)):
+       if vec[i] in sub:
+           vec[i] = 'Other'
+   return(vec)
+
 
     
 def Pred_to_num(pred):
@@ -140,12 +149,14 @@ data = pd.read_csv("/Users/travisbarton/Documents/Github/Redditbot/askscience_Da
 noise = pd.read_csv("/Users/travisbarton/Documents/Github/Redditbot/Training_data.csv")
 data = data.iloc[:, 1:]
 noise = noise.iloc[:,1:]
-noise = Noise_maker(noise, 'physics')
+noise = Noise_maker(noise, 'astro')
 
 Layer2_Spacy_vector = Turn_into_Spacy(data)
 Layer1_Spacy_vector = Turn_into_Spacy(noise)
-data.tag = Sub_treater(data.tag, ['physics'])
-noise.iloc[:,2] = Sub_treater(noise.iloc[:,2], ['physics'])
+data.tag = Sub_treater(data.tag, ['astro', 'chem', 'geo', 'med', 'bio', 'physics'])
+data.tag = Sub_treater_other(data.tag, ['astro', 'chem', 'geo', 'med', 'bio', 'physics'])
+
+noise.iloc[:,2] = Sub_treater(noise.iloc[:,2], ['astro', 'chem', 'geo', 'med', 'bio', 'physics'])
 
 
 dat = np.empty([(data.shape[0]+noise.shape[0]), 301])
@@ -192,12 +203,11 @@ model.add(Dense(2, activation = 'softmax'))
 model.compile(loss='binary_crossentropy', 
               optimizer='adam', 
               metrics=['accuracy'])
-filepath="Physics_Models/weights-improvement-{val_acc:.2f}.hdf5"
+filepath="Other_Models/weights-improvement-{val_acc:.2f}.hdf5"
 checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, 
                              save_best_only=True, mode='max')
 callbacks_list = [checkpoint]
 
-#model.load_weights("Physics_Models/weights-improvement-148-0.86.hdf5")
 model_history = model.fit(X_train[:,:300], y_train, epochs=20, batch_size=30, 
                           verbose = 1,
                           validation_data =[X_test[:,:300], y_test]
@@ -217,27 +227,15 @@ plt.plot(model_history.history['loss'])
 plt.plot(model_history.history['val_loss'])
 plt.xticks(range(20))
 
-plt.savefig("Physics Performance.png")
+plt.savefig("Other Performance.png")
 
-model.load_weights("Physics_Models/weights-improvement-0.87.hdf5")
+model.load_weights("Other_Models/weights-improvement-0.89.hdf5")
 
-physpreds = model.predict(X_test[:,:300])
+otherpreds = model.predict(X_test[:,:300])
 
 
-Percent(y_test, physpreds)        
-confm = confusion_matrix(Pred_to_num(y_test), Pred_to_num(physpreds))
+Percent(y_test, otherpreds)        
+confm = confusion_matrix(Pred_to_num(y_test), Pred_to_num(otherpreds))
 confm
-confm/sum(sum(confm))
-plot_confusion_matrix(confm, [0,1], normalize = True, title = "Is Physics?")
+plot_confusion_matrix(confm, [0,1], normalize = True, title = "Is Other?")
 
-
-
-
-
-
-
-
-
-
-
-        
