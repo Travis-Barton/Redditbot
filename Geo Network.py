@@ -139,36 +139,25 @@ nlp = spacy.load('en_vectors_web_lg')
 
 
 data = pd.read_csv("/Users/travisbarton/Documents/Github/Redditbot/askscience_Data.csv")
-noise = pd.read_csv("/Users/travisbarton/Documents/Github/Redditbot/Training_data.csv")
 data = data.iloc[:, 1:]
-noise = noise.iloc[:,1:]
-noise = Noise_maker(noise, 'geo')
 
 Layer2_Spacy_vector = Turn_into_Spacy(data)
-Layer1_Spacy_vector = Turn_into_Spacy(noise)
 data.tag = Sub_treater(data.tag, ['geo'])
-noise.iloc[:,2] = Sub_treater(noise.iloc[:,2], ['geo'])
 
 
-dat = np.empty([(data.shape[0]+noise.shape[0]), 301])
-for i in range(data.shape[0]+noise.shape[0]):
+dat = np.empty([(data.shape[0]), 301])
+for i in range(data.shape[0]):
     for j in range(300):
-        if i < data.shape[0]:
-            dat[i,j] = Layer2_Spacy_vector[i][j]
-        else:
-            dat[i,j] = Layer1_Spacy_vector[i - data.shape[0]][j]
-dat[0:data.shape[0], 300] = pd.factorize(data.tag)[0]
-dat[data.shape[0]:,300] = pd.factorize(noise.iloc[:,2])[0]
+        dat[i,j] = Layer2_Spacy_vector[i][j]
+        
+dat[:, 300] = pd.factorize(data.tag)[0]
 onehot_encoder = OneHotEncoder(sparse=False)       
         
 
-X_train, X_test, y_train, y_test = train_test_split(dat[0:data.shape[0],:300], 
-                                                    dat[0:data.shape[0],300], 
+X_train, X_test, y_train, y_test = train_test_split(dat[:,:300], 
+                                                    dat[:,300], 
                                                     test_size=0.25, 
-                                                    random_state=100)   
-
-#X_train = np.vstack([dat[data.shape[0]:,0:300], X_train])
-#y_train = np.concatenate([dat[data.shape[0]:, 300], y_train])
+                                                    random_state=RS)   
 
 
 
@@ -194,7 +183,7 @@ model.add(Dense(2, activation = 'softmax'))
 model.compile(loss='binary_crossentropy', 
               optimizer='adam', 
               metrics=['accuracy'])
-filepath="Geo_Models/weights-improvement-{val_acc:.2f}.hdf5"
+filepath="Geo_Models/BestGeo.hdf5"
 checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, 
                              save_best_only=True, mode='max')
 callbacks_list = [checkpoint]
@@ -220,12 +209,9 @@ plt.xticks(range(20))
 
 plt.savefig("Geo Performance.png")
 
-model.load_weights("Geo_Models/weights-improvement-0.92.hdf5")
+model.load_weights("Geo_Models/BestGeo.hdf5")
 
 geopreds = model.predict(X_test[:,:300])
 
-
-Percent(y_test, geopreds)        
 confm = confusion_matrix(Pred_to_num(y_test), Pred_to_num(geopreds))
-confm
 plot_confusion_matrix(confm, [0,1], normalize = True, title = "Is Geo?")

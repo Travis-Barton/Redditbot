@@ -11,7 +11,7 @@ Created on Wed Dec  5 15:38:34 2018
 
 
 from keras import initializers
-
+from matplotlib.pyplot import figure
 
 
 def plot_confusion_matrix(cm, classes,
@@ -28,8 +28,8 @@ def plot_confusion_matrix(cm, classes,
     else:
         print('Confusion matrix, without normalization')
 
-    print(cm)
-
+    #print(cm)
+    plt.figure(figsize=(8,8))
     plt.imshow(cm, interpolation='nearest', cmap=cmap)
     plt.title(title)
     plt.colorbar()
@@ -54,41 +54,40 @@ full_data = np.empty([data.shape[0] - len(astropreds), 2])
 
 
 #physics
-model.load_weights("Physics_Models/weights-improvement-0.87.hdf5")
-
+model.load_weights("Physics_Models/BestPhys.hdf5")
 phys = model.predict(X_train)[:,0]
 physpreds = model.predict(X_test[:,:300])[:,0]
 
 
 #Bio
-model.load_weights("Bio_Models/weights-improvement-0.90.hdf5")
+model.load_weights("Bio_Models/BestBio.hdf5")
 bio = model.predict(X_train)[:,0]
 biopreds = model.predict(X_test[:,:300])[:,0]
 
 #Med
-model.load_weights("Med_Models/weights-improvement-0.91.hdf5")
+model.load_weights("Med_Models/BestMed.hdf5")
 med = model.predict(X_train)[:,0]
 medpreds = model.predict(X_test[:,:300])[:,0]
 
 #Geo
-model.load_weights("Geo_Models/weights-improvement-0.92.hdf5")
+model.load_weights("Geo_Models/BestGeo.hdf5")
 geo = model.predict(X_train)[:,0]
 geopreds = model.predict(X_test[:,:300])[:,0]
 
 #Chem
-model.load_weights("Chem_Models/weights-improvement-0.94.hdf5")
+model.load_weights("Chem_Models/BestChem.hdf5")
 chem = model.predict(X_train)[:,0]
 chempreds = model.predict(X_test[:,:300])[:,0]
 
 #Astro
 
-model.load_weights("Astro_Models/weights-improvement-0.95.hdf5")
+model.load_weights("Astro_Models/BestAstro.hdf5")
 astro = model.predict(X_train)[:,0]
 astropreds = model.predict(X_test[:,:300])[:,0]
 
 #Other
 
-model.load_weights("Other_Models/weights-improvement-0.89.hdf5")
+model.load_weights("Other_Models/BestOther.hdf5")
 other = model.predict(X_train)[:,0]
 otherpreds = model.predict(X_test[:,:300])[:,0]
 
@@ -97,22 +96,21 @@ subs = ['physics', 'bio', 'med', 'geo', 'chem', 'astro']
 data = pd.read_csv("/Users/travisbarton/Documents/Github/Redditbot/askscience_Data.csv")
 data = data.iloc[:, 1:]
 data.tag = Sub_treater(data.tag, subs)
-dat[0:data.shape[0], 300] = pd.factorize(data.tag)[0]
-dat[data.shape[0]:,300] = pd.factorize(noise.iloc[:,2])[0]
+dat[:, 300] = pd.factorize(data.tag)[0]
 onehot_encoder = OneHotEncoder(sparse=False)       
         
 
 X_train, X_test, y_train, y_test = train_test_split(dat[0:data.shape[0],:300], 
                                                     dat[0:data.shape[0],300], 
                                                     test_size=0.25, 
-                                                    random_state=100)   
+                                                    random_state=RS)   
 
 
-Final_x_train = np.vstack([phys, bio, med, geo, chem, astro, other]).T
+Final_x_train = np.c_[phys, bio, med, geo, chem, astro, other]
 Final_y_train = y_train
 
-Final_x_test = np.vstack([physpreds, biopreds, medpreds, geopreds, 
-                          chempreds, astropreds, otherpreds]).T
+Final_x_test = np.c_[physpreds, biopreds, medpreds, geopreds, 
+                          chempreds, astropreds, otherpreds]
 Final_y_test = y_test
 
 
@@ -135,7 +133,7 @@ model.add(Dense(7, activation = 'softmax'))
 
 
 model.compile(loss='categorical_crossentropy', 
-              optimizer='adam', 
+              optimizer='sgd', 
               metrics=['accuracy'])
 
 filepath="Final_Model.hdf5"
@@ -144,7 +142,7 @@ checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1,
 callbacks_list = [checkpoint]
 
 
-model_history = model.fit(Final_x_train, Final_y_train, epochs=1000, batch_size=100, 
+model_history = model.fit(Final_x_train, Final_y_train, epochs=1500, batch_size=100, 
                           verbose = 1,
                           validation_data =[Final_x_test, Final_y_test], 
                           callbacks = callbacks_list)
@@ -173,4 +171,4 @@ Fullpreds = model.predict(Final_x_test)
 Percent(Final_y_test, Fullpreds)        
 confm = confusion_matrix(Pred_to_num(Final_y_test), Pred_to_num(Fullpreds))
 confm
-plot_confusion_matrix(confm, np.hstack([subs, 'other']), normalize = True, title = "Which Topic?")
+plot_confusion_matrix(confm, np.hstack([subs, 'other']), normalize = True, title = "Which subreddit?")
