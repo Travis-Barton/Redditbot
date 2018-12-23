@@ -30,8 +30,8 @@ askscience = reddit.subreddit('AskScience')
 
 def Update_Data(awww, Full_Data, lim):
      i = Full_Data.shape[0]
-     #test = awww.top('week', limit = lim)
-     test = awww.hot(limit = 1000)
+     test = awww.top('day', limit = lim)
+     #test = awww.hot(limit = 1000)
      for post in test:
          if post.id not in list(Full_Data.iloc[:,0]):
              title = post.title

@@ -94,6 +94,9 @@ def Binary_network(X, Y, X_test, label, val_split, nodes, epochs, batch_size):
     model_history = model.fit(X[:,:300], Y, 
                               epochs=epochs, batch_size=batch_size, 
                               verbose = 0, validation_split = val_split)
+    #physpreds = model.predict(X)
+    #confm = confusion_matrix(Pred_to_num(Y), Pred_to_num(physpreds))
+    #plot_confusion_matrix(confm, [0,1], normalize = True, title = "?")
     return([model.predict(X)[:,0], model.predict(X_test)[:,0]])
 
 def Feed_reduction(X, Y, X_test, labels = None, val_split = .1, nodes = None, epochs = 15, batch_size = 30):
@@ -109,8 +112,6 @@ def Feed_reduction(X, Y, X_test, labels = None, val_split = .1, nodes = None, ep
         y = Y.copy()
         x_test = X_test.copy()
         y = Sub_treater(y, (label))
-        print(y)
-
         y = pd.factorize(y)[0]
         y = y.reshape(len(y), 1).astype(int)        
         y = onehot_encoder.fit_transform(y)

@@ -65,7 +65,7 @@ def Sub_treater(vec, sub):
 def Pred_to_num(pred):
     results = []
     for i in range(pred.shape[0]):
-        results.append(int(max(np.where(pred[i,:] == max(pred[i,:])))))
+        results.append(int(max(np.where(pred[i-1,:] == max(pred[i-1,:])))))
     return(results)
 
     

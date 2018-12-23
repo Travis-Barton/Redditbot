@@ -49,7 +49,7 @@ y_test = y_test.reshape(len(y_test), 1).astype(int)
 y_train = onehot_encoder.fit_transform(y_train)
 y_test = onehot_encoder.fit_transform(y_test)   
 
-temp = Binary_network(X_train, y_train, X_test, "dont matter yet", .1, 50, 15, 30)
+temp = Binary_network(X_train, y, X_test, "dont matter yet", .1, 50, 15, 30)
 
 
 train_res = np.round(temp[0]).astype(int)
