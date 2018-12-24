@@ -79,27 +79,28 @@ def Predict_post(Title):
     pred = clf.predict(newdat[1])
     return(pred[0])
 
-tites = 'Why does fire appear red and orange?'
-HappyHappyJoyJoy = Predict_post(tites)
-
 
 for post in askscience.stream.submissions(skip_existing = True):
     print("New post: {} \n with tag: {} \n".format(post.title, post.link_flair_css_class))
     j = data.shape[0]
     i = history.shape[0]
     pred = Predict_post(post.title)
-    history.iloc[i,0] = post.id
-    history.iloc[i, 2] = pred
-    history.iloc[i, 3] = post.link_flair_css_class
+    history.loc[i,'id'] = post.id
+    history.loc[i, 'title'] = post.title
+    history.loc[i, 'prediction'] = pred
+    history.loc[i, 'actual'] = post.link_flair_css_class
     if pred == post.link_flair_css_class:
-        history.iloc[i, 4] = 1
+        history.loc[i, 'correct'] = 1
     elif pred == 'Other' and post.link_flair_css_class not in tags:
-        history.iloc[i, 4] = 1
+        history.loc[i, 'correct'] = 1
     else:
-        history.iloc[i, 4] = 0
-    data.iloc[j,:] = [post.id, post.title, post.link_flair_css_class]
+        history.loc[i, 'correct'] = 0
+    data.loc[j,:] = [post.id, post.title, post.link_flair_css_class]
     data.to_csv("askscience_Data.csv")
     history.to_csv('history.csv')
+    dat = np.vstack([dat, nlp(post.title).vector])
+    tags.append(post.link_flair_css_class)
+    
 
 
 
