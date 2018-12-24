@@ -95,15 +95,22 @@ for post in askscience.stream.submissions(skip_existing = True):
     history.loc[i, 'actual'] = post.link_flair_css_class
     if pred == post.link_flair_css_class:
         history.loc[i, 'correct'] = 1
+        tags.append(post.link_flair_css_class)
     elif pred == 'Other' and post.link_flair_css_class not in tags:
         history.loc[i, 'correct'] = 1
+        tags.append('Other')
     else:
         history.loc[i, 'correct'] = 0
+        if post.link_flair_css_class in tags:
+            tags.append(post.link_flair_css_class)
+        else:
+            tags.append('Other')
     data.loc[j,:] = [post.id, post.title, post.link_flair_css_class]
     data.to_csv("askscience_Data.csv")
+    history.loc[i, 'time'] = datetime.datetime.now()
     history.to_csv('history.csv')
     dat = np.vstack([dat, nlp(post.title).vector])
-    tags.append(post.link_flair_css_class)
+    
     
 
 
