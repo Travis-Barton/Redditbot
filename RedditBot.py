@@ -82,6 +82,10 @@ def Predict_post(Title):
 
 for post in askscience.stream.submissions(skip_existing = True):
     print("New post: {} \n with tag: {} \n".format(post.title, post.link_flair_css_class))
+
+    history = pd.read_csv(r'history.csv')
+    history = history.iloc[:, 1:]
+
     j = data.shape[0]
     i = history.shape[0]
     pred = Predict_post(post.title)

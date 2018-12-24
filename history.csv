@@ -1,3 +1,35 @@
 ,id,title,prediction,actual,correct
 0,a92lr3,Why do you taste things much sweeter as an adult than as a child?,med,med,1.0
 1,a8cgr5,Is there any biological influence from a surrogate mother?,bio,bio,1.0
+2,a940au,How do we precisely know how much gravitational force an object like a planet or a moon exerts on a satellite that is using it for a gravitational boost?,physics,geo,0.0
+3,a92s3j,How does a microwave melt butter?,chem,physics,0.0
+4,a90cwb,"In theory, have no two events ever occurred at the exact same time (because time can be broken down into infinitely smaller units)?",physics,physics,1.0
+5,a8yzqd,"Why do atoms not seem to bond in a ""closed circuit"" type structure?",chem,chem,1.0
+6,a8v0oa,Has chemotherapy technology improved over the last 5 years?,med,med,1.0
+7,a8v7jx,"Why do you need to put all of your small liquids in a resealable bag when passing the security check at an airport, and how does the damp swab fabric work?",physics,eng,0.0
+8,a8vdk0,What makes black holes so different from neutron stars?,astro,astro,1.0
+9,a8vsgp,Is it possible for thermohaline circulation to stop?,geo,geo,1.0
+10,a8w60o,Are different types of weather any easier/harder to forecast than others?,geo,geo,1.0
+11,a8xeqf,"If plankton provide the majority of oxygen used by humans, how feasible are they to “farm”?",bio,geo,0.0
+12,a8xhse,Dumb question: How do we know that dinosaurs had scales and not fur?,bio,soc,0.0
+13,a8y137,Does salt accelerate rust formation?,chem,chem,1.0
+14,a94mw2,What factors cause/increase the chance of rain?,geo,geo,1.0
+15,a9401n,How do you accurately calculate an azimuth between faraway countries?,Other,maths,1.0
+16,a95goc,Are atoms with a high electron count more likely to form bonds with other atoms because their valence electrons are far away from the nucleus?,chem,chem,1.0
+17,a9451j,How large is Earths temperate orbital butterzone?,geo,astro,0.0
+18,a929zu,How does speed affect time in our galaxy that is flying through space and spinning around a SMBH?,astro,physics,0.0
+19,a910qz,How do we know the universe is constantly expanding at a certain speed if it is outside our observable universe?,physics,astro,0.0
+20,a8zfnr,Why aren't we using flying drones to explore Mars? Is there an advantage to ground exploration?,geo,geo,1.0
+21,a95x3a,Is psychopathy considered a binary diagnosis or is it seen as a spectrum?,Other,psych,1.0
+22,a95url,"After a critical point, in language acquisition, babies can no longer acquire new phonemes. Is it possible for a baby to acquire phonemes in a language, and use these skills to be able to pronounce phonemes in other languages as they get older?",Other,psych,0.0
+23,a95g8u,Do our ears adjust when listening to very quiet sounds?,med,bio,0.0
+24,a94viz,What is the purpose of homosexual interaction between animals?,bio,bio,1.0
+25,a94sbf,What kind of soil and atmosphere analysis do Mars rovers do to test for extinct and extant life?,bio,bio,1.0
+26,a94od1,What is the difference between Tinea Versicolour & Pityraisis Versicolour?,med,med,1.0
+27,a94454,"When your body gets used to cold water, does it perceive it as a warmer temperature or does it just become less sensitive to the cold?",med,med,1.0
+28,a943fn,"A UFC fighter was recently revealed to have trace amounts of a steroid in his system. Authorities in the UFC and USADA said that they’re from the last time he got busted and a redditor attempted to debunk this theory, could someone have trace amounts of Turinabol 18 months after use?",Other,med,0.0
+29,a9427g,"Were there changing seasons at all during the ice age, or was it like a long, harsh monotonous winter?",geo,geo,1.0
+30,a93hak,Why does fish decay faster (and smellier) than meat?,bio,bio,1.0
+31,a92uns,Does early stage Prostate Cancer have any effect on one's sex drive?,med,med,1.0
+32,a92rww,"Have any species followed an evolutionary path like cetaceans, only to revert to land-dwelling?",bio,bio,1.0
+33,a8yxdo,How close does an asteroid have to be before earths gravity will bring it in for a collision?,astro,astro,1.0
