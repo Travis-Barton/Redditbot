@@ -92,6 +92,7 @@ def Binary_network(X, Y, X_test, label, val_split, nodes, epochs, batch_size):
     #checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, 
      #                            save_best_only=True, mode='max')
     #callbacks_list = [checkpoint]
+
     model_history = model.fit(X[:,:300], Y, 
                               epochs=epochs, batch_size=batch_size, 
                               verbose = 0, validation_split = val_split)
@@ -99,10 +100,8 @@ def Binary_network(X, Y, X_test, label, val_split, nodes, epochs, batch_size):
     #confm = confusion_matrix(Pred_to_num(Y), Pred_to_num(physpreds))
     #plot_confusion_matrix(confm, [0,1], normalize = True, title = "?")
     #print(X_test)
-    print(X_test.shape)
     if (X_test.ndim == 1):
         X_test = np.array([X_test])
-    model.predict(X_test)[:,0]
     return([model.predict(X)[:,0], model.predict(X_test)[:,0]])
 
 def Feed_reduction(X, Y, X_test, labels = None, val_split = .1, nodes = None, epochs = 15, batch_size = 30):

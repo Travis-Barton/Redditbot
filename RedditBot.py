@@ -52,6 +52,7 @@ reddit = praw.Reddit(user_agent='Comment Extraction (by /u/USERNAME)',
 askscience = reddit.subreddit('askscience')
 
 subs = ['physics', 'bio', 'med', 'geo', 'chem', 'astro']
+
 data = pd.read_csv(r'askscience_Data.csv')
 data = data.iloc[:,1:]
 
@@ -60,8 +61,7 @@ history = history.iloc[:, 1:]
 
 dat = np.empty([data.shape[0], 300])
 tags = Sub_treater(data.tag, subs)
-
-
+tags = [tag.replace('other', 'Other') for tag in tags]
 
 for i in range(data.shape[0]):
     temp = nlp(data.iloc[i,1]).vector
@@ -71,32 +71,33 @@ for i in range(data.shape[0]):
 
 def Predict_post(Title):
     Title = nlp(Title).vector
-    #Title = Title.reshape([300, 1])
     newdat = Feed_reduction(dat, tags, Title, nodes = 50)
     clf = svm.SVC(kernel = 'linear')
     clf.fit(newdat[0], tags)
+    #print(newdat[0].shape)
+    #print(newdat[1].shape)
     pred = clf.predict(newdat[1])
-    return(pred)
+    return(pred[0])
 
-tites = 'I love Physics'
+tites = 'Why does fire appear red and orange?'
 HappyHappyJoyJoy = Predict_post(tites)
 
 
 for post in askscience.stream.submissions(skip_existing = True):
-    i = data.shape[0]
-    pred = Predict_post(post)
-    history['id'] = post.id
-    history['prediction'] = pred
-    if pred == post.tag:
-        history['actual'] = pred
-        history['correct'] = 1
-    elif pred == 'Other' and post.tag in Other_tags:
-        history['actual'] = post.tag
-        history['correct'] = 1
+    print("New post: {} \n with tag: {} \n".format(post.title, post.link_flair_css_class))
+    j = data.shape[0]
+    i = history.shape[0]
+    pred = Predict_post(post.title)
+    history.iloc[i,0] = post.id
+    history.iloc[i, 2] = pred
+    history.iloc[i, 3] = post.link_flair_css_class
+    if pred == post.link_flair_css_class:
+        history.iloc[i, 4] = 1
+    elif pred == 'Other' and post.link_flair_css_class not in tags:
+        history.iloc[i, 4] = 1
     else:
-        history['actual'] = post.tag
-        history['correct'] = 0
-    data.iloc[i,:] = [post.id, post.title, post.tag]
+        history.iloc[i, 4] = 0
+    data.iloc[j,:] = [post.id, post.title, post.link_flair_css_class]
     data.to_csv("askscience_Data.csv")
     history.to_csv('history.csv')
 
