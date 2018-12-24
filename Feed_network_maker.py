@@ -67,10 +67,11 @@ def plot_confusion_matrix(cm, classes,
 def Sub_treater(vec, sub):
     holder = []
     for i in range(len(vec)):
-        if str(vec[i])!= str(sub):
-            holder.append('Not_{}'.format(sub))
+        if str(vec[i]) not in str(sub):
+            #holder.append('Not_{}'.format(sub))
+            holder.append('other')
         else:
-            holder.append(str(sub))
+            holder.append(str(vec[i]))
     return(holder)
 
 
@@ -91,18 +92,22 @@ def Binary_network(X, Y, X_test, label, val_split, nodes, epochs, batch_size):
     #checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, 
      #                            save_best_only=True, mode='max')
     #callbacks_list = [checkpoint]
+
     model_history = model.fit(X[:,:300], Y, 
                               epochs=epochs, batch_size=batch_size, 
                               verbose = 0, validation_split = val_split)
     #physpreds = model.predict(X)
     #confm = confusion_matrix(Pred_to_num(Y), Pred_to_num(physpreds))
     #plot_confusion_matrix(confm, [0,1], normalize = True, title = "?")
+    #print(X_test)
+    if (X_test.ndim == 1):
+        X_test = np.array([X_test])
     return([model.predict(X)[:,0], model.predict(X_test)[:,0]])
 
 def Feed_reduction(X, Y, X_test, labels = None, val_split = .1, nodes = None, epochs = 15, batch_size = 30):
     if nodes == None:
         nodes = np.round(X.shape[0]/4)
-    labels = np.unique(labels)
+    labels = np.unique(Y)
     onehot_encoder = OneHotEncoder(sparse=False) 
     finaltrain = np.empty([X.shape[0], len(labels)])
     finaltest = np.empty([X_test.shape[0], len(labels)])
