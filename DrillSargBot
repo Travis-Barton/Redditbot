@@ -41,7 +41,7 @@ reddit = praw.Reddit(user_agent='Comment Extraction (by /u/USERNAME)',
 mysub = reddit.subreddit('travsbots')
 
 
-for post in mysub.stream.submissions():
+for post in mysub.stream.submissions(skip_existing = True):
     post.upvote()
     if 'asksciencebot' and 'report' in post.title:
         history = pd.read_csv(r'history.csv')
