@@ -80,8 +80,10 @@ def Predict_post(Title):
     return(pred[0])
 
 
+
+print("Goodmorning General. I am up and running Sir!")
 for post in askscience.stream.submissions(skip_existing = True):
-    print("New post: {} \n with tag: {} \n".format(post.title, post.link_flair_css_class))
+    
 
     history = pd.read_csv(r'history.csv')
     history = history.iloc[:, 1:]
@@ -107,9 +109,22 @@ for post in askscience.stream.submissions(skip_existing = True):
             tags.append('Other')
     data.loc[j,:] = [post.id, post.title, post.link_flair_css_class]
     data.to_csv("askscience_Data.csv")
-    history.loc[i, 'time'] = datetime.datetime.now()
+    history.loc[i, 'time'] = datetime.datetime.now().date()
     history.to_csv('history.csv')
     dat = np.vstack([dat, nlp(post.title).vector])
+    if history.loc[i, 'correct'] == 1:
+            print("CORRECT!!!!!!!! New post: {} \n with tag: {} and prediction{} \n My accuracy is now: {} \n".format(
+                    post.title, 
+                    post.link_flair_css_class, 
+                    pred, 
+                    round(sum(history['correct'])/history.shape[0], 2)*100))                                      
+    else:
+            print("WRONG!!!!!!!! New post: {} \n with tag: {} and prediction{} \n My accuracy is now: {} ".format(
+                    post.title, 
+                    post.link_flair_css_class, 
+                    pred, 
+                    round(sum(history['correct'])/history.shape[0], 2)*100)) 
+
     
     
 
