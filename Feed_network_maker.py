@@ -24,6 +24,7 @@ import pandas as pd
 from sklearn.metrics import confusion_matrix
 from random import choice, sample
 import warnings
+from progress.bar import ChargingBar
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 nlp = spacy.load('en_vectors_web_lg')
@@ -75,7 +76,7 @@ def Sub_treater(vec, sub):
     return(holder)
 
 
-def Binary_network(X, Y, X_test, label, val_split, nodes, epochs, batch_size):
+def Binary_network(X, Y, X_test, label, val_split, nodes, epochs, batch_size, verbose = 0):
     model = Sequential()
 
     model.add(Dense(nodes, input_dim = X.shape[1], activation = 'linear'))
@@ -93,9 +94,9 @@ def Binary_network(X, Y, X_test, label, val_split, nodes, epochs, batch_size):
      #                            save_best_only=True, mode='max')
     #callbacks_list = [checkpoint]
 
-    model_history = model.fit(X[:,:300], Y, 
+    model_history = model.fit(X, Y, 
                               epochs=epochs, batch_size=batch_size, 
-                              verbose = 0, validation_split = val_split)
+                              verbose = verbose, validation_split = val_split)
     #physpreds = model.predict(X)
     #confm = confusion_matrix(Pred_to_num(Y), Pred_to_num(physpreds))
     #plot_confusion_matrix(confm, [0,1], normalize = True, title = "?")
@@ -103,8 +104,58 @@ def Binary_network(X, Y, X_test, label, val_split, nodes, epochs, batch_size):
     if (X_test.ndim == 1):
         X_test = np.array([X_test])
     return([model.predict(X)[:,0], model.predict(X_test)[:,0]])
+'''
 
-def Feed_reduction(X, Y, X_test, labels = None, val_split = .1, nodes = None, epochs = 15, batch_size = 30):
+def Binary_network(X, Y, X_test, label, val_split, nodes, epochs, batch_size, verbose = 0):
+    model = Sequential()
+
+    model.add(Dense(nodes, input_dim = X.shape[1], activation = 'linear'))
+    model.add(LeakyReLU(alpha=.01))
+    model.add(Dropout(.5))
+    model.add(Dense(nodes, activation = 'linear'))
+    model.add(LeakyReLU(alpha=.01))
+    model.add(Dropout(.4))
+    model.add(Dense(nodes, activation = 'linear'))
+    model.add(LeakyReLU(alpha=.01))
+    model.add(Dense(2, activation = 'softmax'))        
+            
+    model.compile(loss='binary_crossentropy', 
+                  optimizer='sgd', 
+                  metrics=['accuracy'])
+    #filepath="Best_{}.hdf5".format(label)
+    #checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, 
+     #                            save_best_only=True, mode='max')
+    #callbacks_list = [checkpoint]
+
+    model_history = model.fit(X, Y, 
+                              epochs=epochs, batch_size=batch_size, 
+                              verbose = verbose, validation_split = val_split)
+    physpreds = model.predict(X)
+    confm = confusion_matrix(Pred_to_num(Y), Pred_to_num(physpreds))
+    plot_confusion_matrix(confm, [0,1], normalize = True, title = "?")
+    
+    print(X_test)
+    plt.figure()
+    plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=2)
+    plt.subplot(211)
+    plt.plot(model_history.history['acc'])
+    plt.plot(model_history.history['val_acc'])
+    plt.title("Accuracy")
+    plt.xticks(range(20))
+    plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=2)
+    plt.subplot(212)
+    plt.title("\nLoss")
+    plt.plot(model_history.history['loss'])
+    plt.plot(model_history.history['val_loss'])
+    plt.xticks(range(20))
+
+    if (X_test.ndim == 1):
+        X_test = np.array([X_test])
+    return([model.predict(X)[:,0], model.predict(X_test)[:,0]])
+
+'''
+
+def Feed_reduction(X, Y, X_test, labels = None, val_split = .1, nodes = None, epochs = 15, batch_size = 30, verbose = 0):            
     if nodes == None:
         nodes = np.round(X.shape[0]/4)
     labels = np.unique(Y)
@@ -112,7 +163,10 @@ def Feed_reduction(X, Y, X_test, labels = None, val_split = .1, nodes = None, ep
     finaltrain = np.empty([X.shape[0], len(labels)])
     finaltest = np.empty([X_test.shape[0], len(labels)])
     i = 0
+    how_many = len(labels)
+    bar = ChargingBar('Networks Loaded', max=how_many)
     for label in labels:
+        
         x = X.copy()
         y = Y.copy()
         x_test = X_test.copy()
@@ -120,10 +174,12 @@ def Feed_reduction(X, Y, X_test, labels = None, val_split = .1, nodes = None, ep
         y = pd.factorize(y)[0]
         y = y.reshape(len(y), 1).astype(int)        
         y = onehot_encoder.fit_transform(y)
-        temp = Binary_network(x, y, x_test, label, val_split, nodes, epochs, batch_size)
+        temp = Binary_network(x, y, x_test, label, val_split, nodes, epochs, batch_size, verbose)
         finaltrain[:,i] = temp[0]
         finaltest[:,i] = temp[1]
+        bar.next()
         i +=1
+    bar.finish()
     return([finaltrain, finaltest])
         
 
