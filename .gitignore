@@ -7,3 +7,4 @@ glove.6B/glove.6B.300d.txt
 glove.6B/glove.6B.50d.txt
 *.hdf5
 *.hdf5
+__pycache__/Feed_network_maker.cpython-36.pyc
