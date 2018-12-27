@@ -43,6 +43,7 @@ mysub = reddit.subreddit('travsbots')
 
 for post in mysub.stream.submissions(skip_existing = True):
     post.upvote()
+    print(post.title)
     if 'asksciencebot' and 'report' in post.title:
         history = pd.read_csv(r'history.csv')
         history = history.iloc[:, 1:]
