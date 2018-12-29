@@ -119,7 +119,7 @@ for post in askscience.stream.submissions(skip_existing = True):
                     pred, 
                     round(sum(history['correct'])/history.shape[0], 2)*100))                                      
     else:
-            print("WRONG!!!!!!!! New post: {} \n with tag: {} and prediction {} \n My accuracy is now: {} ".format(
+            print("WRONG!!!!!!!! New post: {} \n with tag: {} and prediction {} \n My accuracy is now: {} \n".format(
                     post.title, 
                     post.link_flair_css_class, 
                     pred, 
