@@ -151,20 +151,47 @@ train = train.iloc[:,:784]/256
 test = test.iloc[:,:784]/256
 
 
-new_dat = Feed_reduction(train, y, test, labels = np.unique(y), val_split = .3, nodes = 100, epochs = 20,batch_size = 300, verbose = 2)
+new_dat = Feed_reduction(train, y, test, labels = np.unique(y), val_split = .3, nodes = 150, epochs = 100, batch_size = 300, verbose = 0)
 
 
 svmtime = svm.SVC(gamma = .001)
 svmtime.fit(new_dat[0], y)
 predsvm = svmtime.predict(new_dat[1])
-1 - sum(predsvm == y_test)/len(y_test)
-
-new_train = np.array(new_dat[0])
+#1 - sum(predsvm == y_test)/len(y_test)
 
 
+'''
 svmm = svm.SVC(gamma = .001)
 svmm.fit(train.values, y.values)
 predssvm2 = svmm.predict(test.values)
-1 - sum(predssvm2 == y_test)/len(y_test)
+#1 - sum(predssvm2 == y_test)/len(y_test)
 
-PCA
+
+
+
+PCAmod = PCA(n_components=.95)
+PCAmod.fit(train)
+PCAtrain = PCAmod.transform(train)
+PCAtest = PCAmod.transform(test)
+
+
+svmPCA = svm.SVC(gamma = .001)
+svmPCA.fit(PCAtrain, y)
+predsPCA = svmPCA.predict(PCAtest)
+#1-sum(predsPCA == y_test)/len(y_test)
+'''
+print('your mod: {}'.format(1 - sum(predsvm == y_test)/len(y_test)))
+print('no mod: {}'.format(1 - sum(predssvm2 == y_test)/len(y_test)))
+print('PCA mod: {}'.format(1-sum(predsPCA == y_test)/len(y_test)))
+
+
+
+
+
+
+
+
+
+
+
+
