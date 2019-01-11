@@ -60,8 +60,7 @@ while True:
         history = history.iloc[:,1:]
         row = random.sample(list(np.where(history.iloc[:,4] == 0)[0]), 2)
         numerofposts = (history.shape[0])
-        reddit.subreddit('travsbots').submit('Private Askscience Bot for my
-                        weekly update, Sir!', selftext = 
+        reddit.subreddit('travsbots').submit('Private Askscience Bot for myweekly update, Sir!', selftext = 
                       '''I have been working hard to record the content of 
                       r/askscience and attempt to predict the tags of each post. 
                       My goal is to someday be a moderator there! They are not 
