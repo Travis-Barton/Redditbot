@@ -107,6 +107,7 @@ for post in askscience.stream.submissions(skip_existing = True):
             tags.append(post.link_flair_css_class)
         else:
             tags.append('Other')
+    print("\n")
     data.loc[j,:] = [post.id, post.title, post.link_flair_css_class]
     data.to_csv("askscience_Data.csv")
     history.loc[i, 'time'] = datetime.datetime.now().date()
