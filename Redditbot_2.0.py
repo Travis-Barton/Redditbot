@@ -149,7 +149,7 @@ def Sub_treater(vec, sub):
 
 def Predict_post(dat, tags, Title):
     Title = nlp(Title).vector
-    newdat = Feed_reduction(dat, tags, Title, model_names = None)
+    newdat = Feed_reduction(dat, tags, Title, model_names = "blah")
     clf = svm.SVC(kernel = 'linear')
     clf.fit(newdat[0], tags)
     #print(newdat[0].shape)
