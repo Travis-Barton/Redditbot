@@ -58,7 +58,7 @@ while True:
     if times == 0:
         history = pd.read_csv(r'history.csv')
         history = history.iloc[:,1:]
-        row = random.sample(list(np.where(history.iloc[:,4] == 0)[0]), 2)
+        row = random.sample(list(np.where(history.iloc[:,4] == 0)[0]), 8)
         numerofposts = (history.shape[0])
         reddit.subreddit('travsbots').submit('Private Askscience Bot for myweekly update, Sir!', selftext = 
                       '''I have been working hard to record the content of 
@@ -68,23 +68,21 @@ while True:
                       attempting to prove to them that I am reliable! I try to 
                       predict the main 6 catagories, and leave the less populus
                       ones to be classified as \'other\' but that might change 
-                      as I gather more data! 
-                      \n \n
-                      This week, I have classified {} posts, and am doing more 
+                      as I gather more data! \n This week, I have classified {} posts, and am doing more 
                       everyday. In general, I have an accuracy around %{} and 
                       have classified {} posts in total. I use a natural 
                       language proccessing technique, a variable reduction method
                       invented by Travis Barton called Feed Networks and SVM in 
                       order to decide where each post belongs. You can read all
                       about it under Passion Projects on his 
-                      website: [www.wbbpredictions.com](http://www.wbbpredictions.com)
-                      \n \n \n 
-                      Some examples of trouble posts are: 
-                          \n \n 
-                      \"{}\" classified as {} when the mods classified it as {}
-                      \n \n 
-                      and 
-                      \n \n 
+                      website: [www.wbbpredictions.com](http://www.wbbpredictions.com) \n Some examples of trouble posts are: \n \n
+                      \"{}\" classified as {} when the mods classified it as {} \n \n  
+                      \"{}\" classified as {} when the mods classified it as {} \n \n
+                      \"{}\" classified as {} when the mods classified it as {} \n \n
+                      \"{}\" classified as {} when the mods classified it as {} \n \n
+                      \"{}\" classified as {} when the mods classified it as {} \n \n
+                      \"{}\" classified as {} when the mods classified it as {} \n \n
+                      \"{}\" classified as {} when the mods classified it as {} \n \n
                       \"{}\" classified as {} when the mods classified it as {}
                       '''.format(
                       history.shape[0]-lastposts, 
@@ -95,7 +93,25 @@ while True:
                       history.loc[row[0], 'actual'], 
                       history.iloc[row[1], 1], 
                       history.loc[row[1], 'prediction'],
-                      history.loc[row[1], 'actual']
+                      history.loc[row[1], 'actual'],
+                      history.iloc[row[2], 1], 
+                      history.loc[row[2], 'prediction'],
+                      history.loc[row[2], 'actual'],
+                      history.iloc[row[3], 1], 
+                      history.loc[row[3], 'prediction'],
+                      history.loc[row[3], 'actual'],
+                      history.iloc[row[4], 1], 
+                      history.loc[row[4], 'prediction'],
+                      history.loc[row[4], 'actual'],
+                      history.iloc[row[5], 1], 
+                      history.loc[row[5], 'prediction'],
+                      history.loc[row[5], 'actual'],
+                      history.iloc[row[6], 1], 
+                      history.loc[row[6], 'prediction'],
+                      history.loc[row[6], 'actual'],
+                      history.iloc[row[7], 1], 
+                      history.loc[row[7], 'prediction'],
+                      history.loc[row[7], 'actual']
                       ))
         lastposts = history.shape[0]
         time.sleep(86400)
