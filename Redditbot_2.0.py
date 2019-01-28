@@ -85,7 +85,7 @@ def Feed_reduction(X, Y, X_test, model_names = None, labels = None, val_split = 
             temp = Binary_network(x, y, x_test, label, val_split, nodes, epochs, batch_size, None, verbose)
             finaltrain[:,i] = temp[0]
             bar.next()
-            print("network {} done.".format(i+1))
+            print(" network {} done.".format(i+1))
             i +=1
         bar.finish()
         return(finaltrain)
@@ -181,7 +181,7 @@ def main():
     print("Goodmorning General. I am loading the first round of networks, Sir!")
     Feed_reduction(dat, tags, X_test = None, model_names = None, save = True)
     
-    print("General, my warmup is done, I am ready to begin my work!")
+    print("\n General, my warmup is done, I am ready to begin my work!")
     i = 0
     for post in askscience.stream.submissions(skip_existing = True):
         print(post.title)
