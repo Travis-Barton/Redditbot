@@ -50,7 +50,7 @@ travsbots = reddit.subreddit('travsbots')
 history = pd.read_csv(r'history.csv')
 
 history = history.iloc[:,1:]
-lastposts = history.shape[0]
+lastposts = 650
 
 k= 0
 while True:
@@ -69,7 +69,7 @@ while True:
                       predict the main 6 catagories, and leave the less populus
                       ones to be classified as \'other\' but that might change 
                       as I gather more data! \n This week, I have classified {} posts, and am doing more 
-                      everyday. In general, I have an accuracy around %{} and 
+                      everyday. In general, I have an accuracy around {}% and 
                       have classified {} posts in total. I use a natural 
                       language proccessing technique, a variable reduction method
                       invented by Travis Barton called Feed Networks and SVM in 
