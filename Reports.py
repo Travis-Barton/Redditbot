@@ -75,15 +75,7 @@ while True:
                       invented by Travis Barton called Feed Networks and SVM in 
                       order to decide where each post belongs. You can read all
                       about it under Passion Projects on his 
-                      website: [www.wbbpredictions.com](http://www.wbbpredictions.com) \n Some examples of trouble posts are: \n \n
-                      \"{}\" classified as {} when the mods classified it as {} \n \n  
-                      \"{}\" classified as {} when the mods classified it as {} \n \n
-                      \"{}\" classified as {} when the mods classified it as {} \n \n
-                      \"{}\" classified as {} when the mods classified it as {} \n \n
-                      \"{}\" classified as {} when the mods classified it as {} \n \n
-                      \"{}\" classified as {} when the mods classified it as {} \n \n
-                      \"{}\" classified as {} when the mods classified it as {} \n \n
-                      \"{}\" classified as {} when the mods classified it as {}
+                      website: [www.wbbpredictions.com](http://www.wbbpredictions.com) \n Some examples of trouble posts are: \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {}
                       '''.format(
                       history.shape[0]-lastposts, 
                       np.round(sum(history['correct'])/history.shape[0]*100, 2), 
