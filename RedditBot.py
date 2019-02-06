@@ -18,7 +18,7 @@ from collections import Counter
 import datetime
 import time
 import requests
-from Feed_network_maker import plot_confusion_matrix, Sub_treater, Binary_network, Feed_reduction
+from Feed_network_maker import Sub_treater, Binary_network, Feed_reduction
 import itertools
 from sklearn.model_selection import train_test_split
 from sklearn import svm
