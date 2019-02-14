@@ -183,53 +183,57 @@ def main():
     
     print("\n General, my warmup is done, I am ready to begin my work!")
     i = 0
-    for post in askscience.stream.submissions(skip_existing = True):
-        print(post.title)
-        history = pd.read_csv(r'history.csv')
-        history = history.iloc[:, 1:]   
-        j = data.shape[0]
-        i = history.shape[0]
-        pred = Predict_post(dat, tags, post.title)
-        history.loc[i,'id'] = post.id
-        history.loc[i, 'title'] = post.title
-        history.loc[i, 'prediction'] = pred
-        history.loc[i, 'actual'] = post.link_flair_css_class
-        if pred == post.link_flair_css_class:
-            history.loc[i, 'correct'] = 1
-            tags.append(post.link_flair_css_class)
-        elif pred == 'Other' and post.link_flair_css_class not in tags:
-            history.loc[i, 'correct'] = 1
-            tags.append('Other')
-        else:
-            history.loc[i, 'correct'] = 0
-            if post.link_flair_css_class in tags:
-                tags.append(post.link_flair_css_class)
-            else:
-                tags.append('Other')
-        print("\n")
-        data.loc[j,:] = [post.id, post.title, post.link_flair_css_class]
-        data.to_csv("askscience_Data.csv")
-        history.loc[i, 'time'] = datetime.datetime.now().date()
-        history.to_csv('history.csv')
-        dat = np.vstack([dat, nlp(post.title).vector])
-        if history.loc[i, 'correct'] == 1:
-            print("CORRECT!!!!!!!! New post: {} \n with tag: {} and prediction {} \n My accuracy is now: {} \n".format(
-                    post.title, 
-                    post.link_flair_css_class, 
-                    pred, 
-                    round(sum(history['correct'])/history.shape[0], 4)*100))                                      
-        else:
-            print("WRONG!!!!!!!! New post: {} \n with tag: {} and prediction {} \n My accuracy is now: {} \n".format(
-                    post.title, 
-                    post.link_flair_css_class, 
-                    pred, 
-                    round(sum(history['correct'])/history.shape[0], 4)*100)) 
-        i = i+1
-        if i % 20 == 0:
-            print("Reloading networks, Sir. This may take a moment")
-            Feed_reduction(dat, tags, X_test = None, model_names = None, save = True)
-        
-            
+    while True:
+        try: 
+            for post in askscience.stream.submissions(skip_existing = True):
+                print(post.title)
+                history = pd.read_csv(r'history.csv')
+                history = history.iloc[:, 1:]   
+                j = data.shape[0]
+                i = history.shape[0]
+                pred = Predict_post(dat, tags, post.title)
+                history.loc[i,'id'] = post.id
+                history.loc[i, 'title'] = post.title
+                history.loc[i, 'prediction'] = pred
+                history.loc[i, 'actual'] = post.link_flair_css_class
+                if pred == post.link_flair_css_class:
+                    history.loc[i, 'correct'] = 1
+                    tags.append(post.link_flair_css_class)
+                elif pred == 'Other' and post.link_flair_css_class not in tags:
+                    history.loc[i, 'correct'] = 1
+                    tags.append('Other')
+                else:
+                    history.loc[i, 'correct'] = 0
+                    if post.link_flair_css_class in tags:
+                        tags.append(post.link_flair_css_class)
+                    else:
+                        tags.append('Other')
+                print("\n")
+                data.loc[j,:] = [post.id, post.title, post.link_flair_css_class]
+                data.to_csv("askscience_Data.csv")
+                history.loc[i, 'time'] = datetime.datetime.now().date()
+                history.to_csv('history.csv')
+                dat = np.vstack([dat, nlp(post.title).vector])
+                if history.loc[i, 'correct'] == 1:
+                    print("CORRECT!!!!!!!! New post: {} \n with tag: {} and prediction {} \n My accuracy is now: {} \n".format(
+                            post.title, 
+                            post.link_flair_css_class, 
+                            pred, 
+                            round(sum(history['correct'])/history.shape[0], 4)*100))                                      
+                else:
+                    print("WRONG!!!!!!!! New post: {} \n with tag: {} and prediction {} \n My accuracy is now: {} \n".format(
+                            post.title, 
+                            post.link_flair_css_class, 
+                            pred, 
+                            round(sum(history['correct'])/history.shape[0], 4)*100)) 
+                i = i+1
+                if i % 20 == 0:
+                    print("Reloading networks, Sir. This may take a moment")
+                    Feed_reduction(dat, tags, X_test = None, model_names = None, save = True)
+        except:
+            print("I came accross an error general. I'll try restarting in 60 seconds")
+        time.sleep(60)
+                    
             
         
     
