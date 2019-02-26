@@ -186,16 +186,18 @@ def main():
     while True:
         try: 
             for post in askscience.stream.submissions(skip_existing = True):
-                print(post.title)
+                data.loc[j,:] = [post.id, post.title, post.link_flair_css_class]
+                data.to_csv("askscience_Data.csv")
                 history = pd.read_csv(r'history.csv')
                 history = history.iloc[:, 1:]   
                 j = data.shape[0]
                 i = history.shape[0]
-                pred = Predict_post(dat, tags, post.title)
+                history.loc[i, 'actual'] = post.link_flair_css_class
                 history.loc[i,'id'] = post.id
                 history.loc[i, 'title'] = post.title
+                history.loc[i, 'prediction'] = none
+                pred = Predict_post(dat, tags, post.title)
                 history.loc[i, 'prediction'] = pred
-                history.loc[i, 'actual'] = post.link_flair_css_class
                 if pred == post.link_flair_css_class:
                     history.loc[i, 'correct'] = 1
                     tags.append(post.link_flair_css_class)
@@ -209,8 +211,6 @@ def main():
                     else:
                         tags.append('Other')
                 print("\n")
-                data.loc[j,:] = [post.id, post.title, post.link_flair_css_class]
-                data.to_csv("askscience_Data.csv")
                 history.loc[i, 'time'] = datetime.datetime.now().date()
                 history.to_csv('history.csv')
                 dat = np.vstack([dat, nlp(post.title).vector])
