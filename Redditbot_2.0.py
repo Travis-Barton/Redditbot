@@ -195,7 +195,7 @@ def main():
                 history.loc[i, 'actual'] = post.link_flair_css_class
                 history.loc[i,'id'] = post.id
                 history.loc[i, 'title'] = post.title
-                history.loc[i, 'prediction'] = none
+                history.loc[i, 'prediction'] = None
                 pred = Predict_post(dat, tags, post.title)
                 history.loc[i, 'prediction'] = pred
                 if pred == post.link_flair_css_class:
@@ -215,13 +215,15 @@ def main():
                 history.to_csv('history.csv')
                 dat = np.vstack([dat, nlp(post.title).vector])
                 if history.loc[i, 'correct'] == 1:
-                    print("CORRECT!!!!!!!! New post: {} \n with tag: {} and prediction {} \n My accuracy is now: {} \n".format(
+                    print("CORRECT!!!!!!!! New post #{}: {} \n with tag: {} and prediction {} \n My accuracy is now: {} \n".format(
+                            history.shape[0],
                             post.title, 
                             post.link_flair_css_class, 
                             pred, 
                             round(sum(history['correct'])/history.shape[0], 4)*100))                                      
                 else:
-                    print("WRONG!!!!!!!! New post: {} \n with tag: {} and prediction {} \n My accuracy is now: {} \n".format(
+                    print("WRONG!!!!!!!!!! New post #{}: {} \n with tag: {} and prediction {} \n My accuracy is now: {} \n".format(
+                            history.shape[0],
                             post.title, 
                             post.link_flair_css_class, 
                             pred, 
