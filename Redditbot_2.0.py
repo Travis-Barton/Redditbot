@@ -232,8 +232,8 @@ def main():
                 if i % 20 == 0:
                     print("Reloading networks, Sir. This may take a moment")
                     Feed_reduction(dat, tags, X_test = None, model_names = None, save = True)
-        except:
-            print("I came accross an error general. I'll try restarting in 60 seconds")
+        except Exception as e:
+            print("I came accross an error general. I'll try restarting in 60 seconds: {} \n".format(e))
         time.sleep(60)
                     
             
