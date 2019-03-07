@@ -192,11 +192,10 @@ def main():
                 history = history.iloc[:, 1:]   
                 j = data.shape[0]
                 i = history.shape[0]
+                pred = Predict_post(dat, tags, post.title)
                 history.loc[i, 'actual'] = post.link_flair_css_class
                 history.loc[i,'id'] = post.id
                 history.loc[i, 'title'] = post.title
-                history.loc[i, 'prediction'] = None
-                pred = Predict_post(dat, tags, post.title)
                 history.loc[i, 'prediction'] = pred
                 if pred == post.link_flair_css_class:
                     history.loc[i, 'correct'] = 1
@@ -215,25 +214,27 @@ def main():
                 history.to_csv('history.csv')
                 dat = np.vstack([dat, nlp(post.title).vector])
                 if history.loc[i, 'correct'] == 1:
-                    print("CORRECT!!!!!!!! New post #{}: {} \n with tag: {} and prediction {} \n My accuracy is now: {} \n".format(
+                    print("CORRECT!!!!!!!! New post #{}: {} \n with tag: {} and prediction {} \n My accuracy is now: {} \n My moving accuracy for the last 10 posts was {} \n".format(
                             history.shape[0],
                             post.title, 
                             post.link_flair_css_class, 
                             pred, 
-                            round(sum(history['correct'])/history.shape[0], 4)*100))                                      
+                            round(sum(history['correct'])/history.shape[0], 4)*100,
+                            round(sum(history.iloc[(history.shape[0]-101):(history.shape[0]-1), 5])/100, 4)*100))                                      
                 else:
-                    print("WRONG!!!!!!!!!! New post #{}: {} \n with tag: {} and prediction {} \n My accuracy is now: {} \n".format(
+                    print("WRONG!!!!!!!!!! New post #{}: {} \n with tag: {} and prediction {} \n My accuracy is now: {} \n My moving accuracy for the last 10 posts was {} \n".format(
                             history.shape[0],
                             post.title, 
                             post.link_flair_css_class, 
                             pred, 
-                            round(sum(history['correct'])/history.shape[0], 4)*100)) 
+                            round(sum(history['correct'])/history.shape[0], 4)*100,
+                            round(sum(history.iloc[(history.shape[0]-101):(history.shape[0]-1), 5])/100, 4)*100)) 
                 i = i+1
                 if i % 20 == 0:
                     print("Reloading networks, Sir. This may take a moment")
                     Feed_reduction(dat, tags, X_test = None, model_names = None, save = True)
         except Exception as e:
-            print("I came accross an error general. I'll try restarting in 60 seconds: {} \n".format(e))
+            print("I came accross an error general. I'll try restarting in 60 seconds: \n {} \n".format(e))
         time.sleep(60)
                     
             
