@@ -214,7 +214,7 @@ def main():
                 history.to_csv('history.csv')
                 dat = np.vstack([dat, nlp(post.title).vector])
                 if history.loc[i, 'correct'] == 1:
-                    print("CORRECT!!!!!!!! New post #{}: {} \n with tag: {} and prediction {} \n My accuracy is now: {} \n My moving accuracy for the last 10 posts was {} \n".format(
+                    print("CORRECT!!!!!!!! New post #{}: {} \n with tag: {} and prediction {} \n My accuracy is now: {} \n My moving accuracy for the last 100 posts was {} \n".format(
                             history.shape[0],
                             post.title, 
                             post.link_flair_css_class, 
@@ -222,7 +222,7 @@ def main():
                             round(sum(history['correct'])/history.shape[0], 4)*100,
                             round(sum(history.iloc[(history.shape[0]-101):(history.shape[0]-1), 5])/100, 4)*100))                                      
                 else:
-                    print("WRONG!!!!!!!!!! New post #{}: {} \n with tag: {} and prediction {} \n My accuracy is now: {} \n My moving accuracy for the last 10 posts was {} \n".format(
+                    print("WRONG!!!!!!!!!! New post #{}: {} \n with tag: {} and prediction {} \n My accuracy is now: {} \n My moving accuracy for the last 100 posts was {} \n".format(
                             history.shape[0],
                             post.title, 
                             post.link_flair_css_class, 
