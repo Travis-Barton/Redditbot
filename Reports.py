@@ -18,21 +18,7 @@ from collections import Counter
 import datetime
 import time
 import requests
-from Feed_network_maker import plot_confusion_matrix, Sub_treater, Binary_network, Feed_reduction
 import itertools
-from sklearn.model_selection import train_test_split
-from sklearn import svm
-import keras
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.layers import Dropout
-from keras.callbacks import ModelCheckpoint
-from keras.layers.advanced_activations import LeakyReLU, PReLU
-import math
-from sklearn.preprocessing import LabelEncoder
-from sklearn.preprocessing import OneHotEncoder
-import spacy
-import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.metrics import confusion_matrix
 from random import choice, sample
@@ -54,61 +40,65 @@ lastposts = 650
 
 k= 0
 while True:
-    times  = datetime.now().weekday()
-    if times == 0:
-        history = pd.read_csv(r'history.csv')
-        history = history.iloc[:,1:]
-        row = random.sample(list(np.where(history.iloc[:,4] == 0)[0]), 8)
-        numerofposts = (history.shape[0])
-        reddit.subreddit('travsbots').submit('Private Askscience Bot for myweekly update, Sir!', selftext = 
-                      '''I have been working hard to record the content of 
-                      r/askscience and attempt to predict the tags of each post. 
-                      My goal is to someday be a moderator there! They are not 
-                      currently allowing robots to be moderators, but I will be
-                      attempting to prove to them that I am reliable! I try to 
-                      predict the main 6 catagories, and leave the less populus
-                      ones to be classified as \'other\' but that might change 
-                      as I gather more data! \n This week, I have classified {} posts, and am doing more 
-                      everyday. In general, I have an accuracy around {}% and 
-                      have classified {} posts in total. I use a natural 
-                      language proccessing technique, a variable reduction method
-                      invented by Travis Barton called Feed Networks and SVM in 
-                      order to decide where each post belongs. You can read all
-                      about it under Passion Projects on his 
-                      website: [www.wbbpredictions.com](http://www.wbbpredictions.com) \n Some examples of trouble posts are: \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {}
-                      '''.format(
-                      history.shape[0]-lastposts, 
-                      np.round(sum(history['correct'])/history.shape[0]*100, 2), 
-                      history.shape[0], 
-                      history.iloc[row[0], 1], 
-                      history.loc[row[0], 'prediction'], 
-                      history.loc[row[0], 'actual'], 
-                      history.iloc[row[1], 1], 
-                      history.loc[row[1], 'prediction'],
-                      history.loc[row[1], 'actual'],
-                      history.iloc[row[2], 1], 
-                      history.loc[row[2], 'prediction'],
-                      history.loc[row[2], 'actual'],
-                      history.iloc[row[3], 1], 
-                      history.loc[row[3], 'prediction'],
-                      history.loc[row[3], 'actual'],
-                      history.iloc[row[4], 1], 
-                      history.loc[row[4], 'prediction'],
-                      history.loc[row[4], 'actual'],
-                      history.iloc[row[5], 1], 
-                      history.loc[row[5], 'prediction'],
-                      history.loc[row[5], 'actual'],
-                      history.iloc[row[6], 1], 
-                      history.loc[row[6], 'prediction'],
-                      history.loc[row[6], 'actual'],
-                      history.iloc[row[7], 1], 
-                      history.loc[row[7], 'prediction'],
-                      history.loc[row[7], 'actual']
-                      ))
-        lastposts = history.shape[0]
-        time.sleep(86400)
-    else:
-        time.sleep(86400)
+    try:
+        times  = datetime.now().weekday()
+        if times == 0:
+            history = pd.read_csv(r'history.csv')
+            history = history.iloc[:,1:]
+            row = random.sample(list(np.where(history.iloc[:,4] == 0)[0]), 8)
+            numerofposts = (history.shape[0])
+            reddit.subreddit('travsbots').submit('Private Askscience Bot for myweekly update, Sir!', selftext = 
+                          '''I have been working hard to record the content of 
+                          r/askscience and attempt to predict the tags of each post. 
+                          My goal is to someday be a moderator there! They are not 
+                          currently allowing robots to be moderators, but I will be
+                          attempting to prove to them that I am reliable! I try to 
+                          predict the main 6 catagories, and leave the less populus
+                          ones to be classified as \'other\' but that might change 
+                          as I gather more data! \n This week, I have classified {} posts, and am doing more 
+                          everyday. In general, I have an accuracy around {}% and 
+                          have classified {} posts in total. I use a natural 
+                          language proccessing technique, a variable reduction method
+                          invented by Travis Barton called Feed Networks and SVM in 
+                          order to decide where each post belongs. You can read all
+                          about it under Passion Projects on his 
+                          website: [www.wbbpredictions.com](http://www.wbbpredictions.com) \n Some examples of trouble posts are: \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {}
+                          '''.format(
+                          history.shape[0]-lastposts, 
+                          np.round(sum(history['correct'])/history.shape[0]*100, 2), 
+                          history.shape[0], 
+                          history.iloc[row[0], 1], 
+                          history.loc[row[0], 'prediction'], 
+                          history.loc[row[0], 'actual'], 
+                          history.iloc[row[1], 1], 
+                          history.loc[row[1], 'prediction'],
+                          history.loc[row[1], 'actual'],
+                          history.iloc[row[2], 1], 
+                          history.loc[row[2], 'prediction'],
+                          history.loc[row[2], 'actual'],
+                          history.iloc[row[3], 1], 
+                          history.loc[row[3], 'prediction'],
+                          history.loc[row[3], 'actual'],
+                          history.iloc[row[4], 1], 
+                          history.loc[row[4], 'prediction'],
+                          history.loc[row[4], 'actual'],
+                          history.iloc[row[5], 1], 
+                          history.loc[row[5], 'prediction'],
+                          history.loc[row[5], 'actual'],
+                          history.iloc[row[6], 1], 
+                          history.loc[row[6], 'prediction'],
+                          history.loc[row[6], 'actual'],
+                          history.iloc[row[7], 1], 
+                          history.loc[row[7], 'prediction'],
+                          history.loc[row[7], 'actual']
+                          ))
+            lastposts = history.shape[0]
+            time.sleep(86400)
+        else:
+            time.sleep(86400)
+    except Exception as e:
+            print("I came accross an error Sir. I'll try restarting in 60 seconds: \n {} \n".format(e))
+    time.sleep(60)
 
 
  

@@ -186,7 +186,7 @@ def main():
     while True:
         try: 
             for post in askscience.stream.submissions(skip_existing = True):
-                data.loc[j,:] = [post.id, post.title, post.link_flair_css_class]
+                data.loc[j,:] = [post.id, post.title, post.link_flair_css_class, post.selftext]
                 data.to_csv("askscience_Data.csv")
                 history = pd.read_csv(r'history.csv')
                 history = history.iloc[:, 1:]   
@@ -197,6 +197,7 @@ def main():
                 history.loc[i,'id'] = post.id
                 history.loc[i, 'title'] = post.title
                 history.loc[i, 'prediction'] = pred
+                history.loc[i, 'body'] = post.selftext
                 if pred == post.link_flair_css_class:
                     history.loc[i, 'correct'] = 1
                     tags.append(post.link_flair_css_class)
