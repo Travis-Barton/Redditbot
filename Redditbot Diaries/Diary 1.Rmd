@@ -1,0 +1,92 @@
+---
+title: "Preproccessing comparison"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# How does TF-IDF compare to GloVe?
+
+I have a personal favorite data set. I don't know if that is taboo to say, but it is definitely true. Over the past year now, I have been collecting posts from (r/askscience). Its a textual analysis data set with short sentences, meaningful classifications, and collected by me! 
+
+Its also been my white whale. I have been unable to get above 80% accuracy in the history of its collection. There are lots of things I have been meaning to try, so I decided to start chronicling my progress.
+
+To do this right, I really wanted to start from scratch. So today is just a description of the data, basic TF-IDF analysis, GloVe word embeddings, and PCA on each.
+
+### Data Description
+
+```{r, data description, echo=T, warning=F, include=F}
+library(readr)
+library(dplyr)
+library(janeaustenr)
+library(tidytext)
+library(textclean)
+library(stringr)
+setwd("~/GitHub/Redditbot")
+askscience = read_csv('C:/Users/sivar/OneDrive/Documents/GitHub/Redditbot/askscience_Data.csv')[,-1]
+askscience$tag = factor(askscience$tag)
+askscience$tag[which(is.na(askscience$tag) == T)] = 'meta'
+askscience$Title = askscience$Title %>%
+  lapply(Text_Clean) %>%
+  unlist()
+```
+
+```{r, tidy=T}
+head(askscience)
+summary(askscience)
+```
+
+
+
+
+### Reddit TF-IDF
+TF-IDF stands for 'Term Frequency-Inverse Document Frequency'.  
+
+$$ 
+\textrm{Term Frequency} = \frac{\textrm{# times term is in the document}}{\textrm{Total terms in the document}}
+$$
+
+and 
+
+$$
+\textrm{Inverse Document Frequency} = log_e \bigg(\frac{\textrm{The total number of documents}}{\textrm{The number of documents with the given term}}\bigg)
+$$
+Each vector is composed of the multiplication:
+$$
+
+\textrm{TF}_t*\textrm{IDF}_t
+
+$$
+That way words that appear in a document frequently are given more wright, and words that appear in all documents are weighted less. This method is better when there is a large corpus, so not surprisingly, it does not work well on this data set. 
+
+```{r}
+askscience_words = askscience %>%
+  unnest_tokens(word, Title, token = stringr::str_split, pattern = " ") %>%
+  filter(word != "")
+
+total_words = askscience_words %>% group_by(id) %>% summarize(total = sum(n))
+
+
+book_words <- austen_books() %>%
+  unnest_tokens(word, text) %>%
+  count(book, word, sort = TRUE)
+
+total_words <- book_words %>% group_by(book) %>% summarize(total = sum(n))
+book_words <- left_join(book_words, total_words)
+book_words
+
+```
+
+### Reddit GloVe
+
+
+
+### PCA on both above
+
+
+#### TF-IDF
+
+
+#### GLoVe
+
