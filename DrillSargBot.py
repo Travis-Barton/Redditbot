@@ -14,7 +14,6 @@ import datetime
 import time
 import requests
 import pandas as pd
-
 import warnings
 reddit = praw.Reddit(user_agent='Comment Extraction (by /u/USERNAME)',
                      client_id='bepL4c1oHsSEIA', client_secret='Mj6pnYQS1QB6Vh1Fyt1cXSb1EF8',
@@ -39,7 +38,7 @@ while True:
                 else:
                     post.reply('Private Askscience Bot has achieved an accuracy of %{} out of {} posts, Sir! \n In his last 100 posts, he has achieved an accuracy of {}.'.format(
                             np.round(correct/numpreds, 4)*100, numpreds,
-                            round(sum(history.iloc[(history.shape[0]-101):(history.shape[0]-1), 5])/100, 4)*100))
+                            round(sum(history.loc[(history.shape[0]-101):(history.shape[0]-1), 'correct'])/100, 4)*100))
     except Exception as e:
         print("I came accross an error Sir. I'll try restarting in 60 seconds: \n {} \n".format(e))
     time.sleep(60)

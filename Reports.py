@@ -45,7 +45,8 @@ while True:
         if times == 0:
             history = pd.read_csv(r'history.csv')
             history = history.iloc[:,1:]
-            row = random.sample(list(np.where(history.iloc[:,4] == 0)[0]), 8)
+            print("hello")
+            row = random.sample(list(np.where(history['correct'] == 0)[0]), 8)
             numerofposts = (history.shape[0])
             reddit.subreddit('travsbots').submit('Private Askscience Bot for myweekly update, Sir!', selftext = 
                           '''I have been working hard to record the content of 
@@ -62,7 +63,7 @@ while True:
                           invented by Travis Barton called Feed Networks and SVM in 
                           order to decide where each post belongs. You can read all
                           about it under Passion Projects on his 
-                          website: [www.wbbpredictions.com](http://www.wbbpredictions.com) \n Some examples of trouble posts are: \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {} \n \n \"{}\" classified as {} when the mods classified it as {}
+                          website: [www.wbbpredictions.com](http://www.wbbpredictions.com) \n Some examples of trouble posts are: \n \n \"{}\" classified as __{}__ when the mods classified it as __{}__ \n \n \"{}\" classified as __{}__ when the mods classified it as __{}__ \n \n \"{}\" classified as __{}__ when the mods classified it as __{}__ \n \n \"{}\" classified as __{}__ when the mods classified it as __{}__ \n \n \"{}\" classified as __{}__ when the mods classified it as __{}__ \n \n \"{}\" classified as __{}__ when the mods classified it as __{}__ \n \n \"{}\" classified as __{}__ when the mods classified it as __{}__ \n \n \"{}\" classified as __{}__ when the mods classified it as __{}__
                           '''.format(
                           history.shape[0]-lastposts, 
                           np.round(sum(history['correct'])/history.shape[0]*100, 2), 
