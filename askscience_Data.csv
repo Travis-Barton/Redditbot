@@ -298,7 +298,7 @@
 296,6hejov,How far does an insect (like a beetle or a fly) travel from the place they were born in?,bio
 297,65vy4z,"Is there any validity to the claim that Epsom salts ""Increase the relaxing effects of a warm bath after strenuous exertion""? If so, what is the Underlying mechanism for this effect?",med
 298,7284qu,Nutrition Facts: Why is sodium listed instead of salt?,chem
-299,bb2ohk,"How was Pi ""discovered"" and how was it plugged into formulae correctly? How was it able to be used before the invention of calculators?",maths
+299,bdr3eb,Are 2FA codes random or is there an algorithm in place to make the digits more human-friendly?,computing
 300,9frrg0,"Has there ever been a case of someone donating an organ, and then getting the same organ back again (which used to be theirs)?",med
 301,5vm1i8,Trappist-1 Exoplanets Megathread!,astro
 302,8e8kuh,"How is it so that several (all?) mammals grow and lose a set of ""baby teeth"" before growing their final dentition? Why stop at two sets when other vertebrates such as sharks regenerate their teeth constantly?",bio
@@ -7942,3 +7942,82 @@
 7940,bb9ovn,"If Antihistamines block the immune systems' response, how does it not hinder the body from dealing with attacks?",med
 7941,bbaaya,Why is odor-causing bacteria only drawn to certain parts of the body?,bio
 7942,bb8wst,"Do wireless chargers use energy when not charging a device? If so, what form of energy is the electrical energy converted to?",eng
+7943,bdmj7c,Whay can't electric vehicles just swap batteries instead of charging?,eng
+7944,bdrxjc,How do magnets get their magnetic fields? How do electrons get their electric fields? How do these even get their force fields in the first place?,physics
+7945,bdrg7g,How do you predict electronic configurations and bond orders given a molecular orbital (MO) energy diagram (for diatomic molecules only)?,chem
+7946,bdskbj,"AskScience AMA Series: We're Nick Magliocca and Kendra McSweeney and our computer model shows how the War on Drugs spreads and strengthens drug trafficking networks in Central America, Ask Us Anything!",
+7947,bdbwgm,Why do corticosteroids cause psychiatric problems? What is the mechanism? Why is it also so variable between patients?,med
+7948,bdfewf,"Where did the mumps virus first come from, and did the mumps virus evolve before or after the first cells appeared?",bio
+7949,bdfhj7,Why does life require heat?,bio
+7950,bdj7ie,"Do aquatic animals urinate? If so, do they have urine bladders?",bio
+7951,bdj9i4,Why does fat have a caloric value if it isn’t normally broken down into glucose?,bio
+7952,bdjnum,What happens when the myelin sheath gets damaged?,med
+7953,bdkerc,How does the Unix time counter in computers know when a second has passed?,computing
+7954,bdohk5,"If we can use fusion inhibitors to treat HIV, why can we not design other antiviral drugs to target virus-cell fusion?",bio
+7955,bdlyl7,Are tropical storms more frequent and powerful now then they were 50 or 100 years ago?,geo
+7956,bdmzab,Does putting an aperture in a laser beam make the smallest point it can be focused to larger or smaller?,physics
+7957,bdpfju,Why doesn't glue stick to the inside of the bottle ?,chem
+7958,bdtccr,"Why can we determine the lifetime of short-living particles up to femtoseconds and less, but for the neutron we are unsure on the order of seconds?",physics
+7959,bdsfa3,I know that GPS systems have a resolution of a few meters. Is there any way to bring this resolution down to the cm? Any available commercial solution?,eng
+7960,bdmhk6,Voyager 1 is nearing 13.5 billion miles away from earth; what information is it still gathering for our use so far away from our solar system? Does our little friend's RTG have enough energy to supply it's signal for very long?,astro
+7961,bdmypa,How do some fish survive so deep underwater? Wouldn’t they get crushed by the pressure?,bio
+7962,bdnx1f,What is at the center of the Milky Way galaxy?,astro
+7963,bdsctr,How and why do bruises form?,med
+7964,bduqrs,Have there been any recorded instances of stars that have disappeared suddenly (stopped emmiting light)?,astro
+7965,bdu4m6,What conditions determine whether a dying star collapses into a neutron star or a black hole?,astro
+7966,bdutdl,Why do we put ice or cold stuff to our bodies when we hit or crash somewhere in order to relieve pain or prevent further bruises? What kind of chemical reaction occurs in the part of body we hitted or crashed?,med
+7967,bdvnqq,"If a blind individual was aboard the ISS, would they still see the flashes due to interstellar radiation astronauts claim to see when they close their eyes?",med
+7968,bdvjch,How doesn't all of the wiring and computers in the ISS not get damaged?,eng
+7969,bdxazs,What is the difference between induced pluripotent stem cells and embryonic stem cells?,bio
+7970,bdx779,"Why is it difficult to unscrew a tight lugnut? I understand why its difficult to make it tighter, because there's something in the way, but why is going backwards also difficult?",physics
+7971,bdw9di,How is the mass of a star determined?,astro
+7972,bdt6f7,If a pregnant woman fell into a coma halfway through her pregnancy would the baby continue to grow normally? Would it survive?,med
+7973,bdt1yr,Are strong odours and autobiographical memories strongly connected because both of them are processed in the hypothalamus and amygdala?,psych
+7974,bds67r,How do acoustic amplifiers on instruments work?,physics
+7975,bdu13o,Can live / attenuated vaccines cause the full disease?,med
+7976,bdzl5h,what is the difference between a rock and a crystal?,geo
+7977,bdn5uu,What exactly is the Bootes Void and why is it empty?,astro
+7978,bdn9a3,Why doesn't the mantle of the Earth have a uniform temperature distribution? What allows hotspots to form?,geo
+7979,bdnccb,In dry etching is a sample exposed to developer before or after etching?,chem
+7980,bdojes,"Are you born with microorganisms (bacteria, etc.) on and in your body, or do they develop over time?",bio
+7981,be0ha3,Will we be able to synthesize any more new elements? What about a whole new “line” of elements?,chem
+7982,bdyc0i,What is so monumental about Einstein's Photoelectric effect?,physics
+7983,bdvee7,"Why Pictures in ultrasonografy is shown in sort of triangle, sort of part of circle way and not square?",med
+7984,bdn3vt,"When we drink tap water that has chlorine in it, does it kill any beneficial bacteria inside our bodies?",med
+7985,bdnfi3,How do boiler explosions work?,eng
+7986,bdoxmu,"Does the fire and collapse of the roof of Paris' Notre-Dame Cathedral, which contains tons of lead, present any major health risks for first responders and neighbors?",neuro
+7987,bdp1kh,"If there is no host to foist her young onto, will a Cuckoo or similar bird raise her own young?",bio
+7988,bdrl2w,"Following the burning of Notre Dame, what is the impact of burnt lead on the environment ?",geo
+7989,bdv2qs,"Is AI currently being used to make weather forecasting better (more accurate, longer date ranges etc)?",geo
+7990,bdzb6z,"Being as we can’t see atoms, how do we know they exist and what features they have?",chem
+7991,bdzrn8,How do organ transplants work?,med
+7992,bdvdur,"What happened to the tons of lead in Notre Dame's roof, will it be a health hazard to firefighters or the river in the future?",
+7993,be3hqx,How is the temperature of exoplanets determined?,astro
+7994,be5pxg,"Is it possible to create ""Anti-Atoms"" with Antimatter ?",physics
+7995,be6tg1,Optics) Why does the cladding's refractive index need to be lower than the core's for TIR?,physics
+7996,be4yp2,What usually happens to refugee camps in the long run? How do they end?,soc
+7997,be3prf,"In quantum physics, how can you check a photon is in superposition without taking a measurement?",physics
+7998,bdvk1c,How do preverbal babies think?,neuro
+7999,bdxfj0,Does our moon change/affect our orbit?,astro
+8000,bdxial,"With liquid blood being found in a preserved foal from 42,000 years ago, how did the blood not congeal?",bio
+8001,bdxuwj,"How would evenly circulated blood, as opposed to the normal pulse, affect the human body?",med
+8002,bdyu07,Why is urine yellow and how is it that certain foods/diets can alter it's color?,med
+8003,bdubm3,Why does water not get hotter than 100C when it is boiling?,chem
+8004,bdzp74,What’s the reason behind “smooth” and “rough” looking water on a calm body of water?,geo
+8005,be38h4,Why is the surface temperature on Venus hotter than Mercury?,astro
+8006,be7waw,"What does ""1 extra case of cancer per 50,000 lifetimes"" mean?",bio
+8007,be8z43,"Ask Anything Wednesday - Biology, Chemistry, Neuroscience, Medicine, Psychology",
+8008,be9bpk,Storing Nuclear Waste: Why not dilute and put it back where it came from?,physics
+8009,bea55g,Why is the speed of light slower in a non-vacuum? What slows it down?,
+8010,beaxvv,How did Latin names for plants and animals come about?,bio
+8011,be9ezk,"Are there ""human-borne"" diseases that have spread to other animals?",bio
+8012,be1ctn,"Why were scientists able to photograph a supermassive black hole 55 million ly away in another galaxy but not of the black hole at the center of our own galaxy some 25,000 ly away?",astro
+8013,be1iep,What makes one blood type different than another?,med
+8014,be1zec,Does sound transmits better in water or in air or is it the same ?,physics
+8015,be4af4,What are the factors that influence the necessary minimum dosage of a certain medication one person may need?,med
+8016,be50sd,Why doesnt cryopreservation kill the sperm?,bio
+8017,be5c0u,Is there a significant difference between being born in winter or in summer?,psych
+8018,be7mpi,Is the mass/size of a supermassive black hole at the center of a galaxy related to the mass/size of that galaxy?,astro
+8019,bee8ec,Why did they need so much code to take the black hole picture?,astro
+8020,bec283,"Why does curing raw fish make it safe to eat in sushi? Alternatively, why can you not just do this with other meat like chicken?",chem
+8021,be1lo2,"How is it that Antarctica was once warm and had plenty of animal and plant life, when for the entirety of winter the region gets no sunlight?",geo
