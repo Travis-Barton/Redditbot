@@ -187,7 +187,7 @@ def main():
     while True:
         try: 
             for post in askscience.stream.submissions(skip_existing = True):
-                data.loc[j,:] = [post.id, post.title, post.link_flair_css_class, post.selftext]
+                data.loc[j,:] = [post.id, post.title, post.link_flair_css_class]
                 data.to_csv("askscience_Data.csv")
                 history = pd.read_csv(r'history.csv')
                 history = history.iloc[:, 1:]   
