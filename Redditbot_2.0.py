@@ -7,6 +7,7 @@ Created on Fri Jan 25 11:41:10 2019
 """
 
 ## Reddit remade
+from __future__ import unicode_literals
 import base64, datetime
 import  praw, prawcore
 import pandas as pd
