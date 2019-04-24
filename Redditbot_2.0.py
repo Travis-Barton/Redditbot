@@ -36,6 +36,7 @@ from sklearn.metrics import confusion_matrix
 from random import choice, sample
 import warnings
 from progress.bar import ChargingBar
+from Reddit_instance import reddit
 warnings.simplefilter(action='ignore', category=FutureWarning)
 nlp = spacy.load('en_vectors_web_lg')
 

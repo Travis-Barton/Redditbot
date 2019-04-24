@@ -14,3 +14,5 @@ __pycache__/Feed_network_maker.cpython-36.pyc
 *.DS_Store
 *.Rapp.history
 *.pyc
+Reddit_instance.py
+__init__.py
