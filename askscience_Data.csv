@@ -298,7 +298,7 @@
 296,6hejov,How far does an insect (like a beetle or a fly) travel from the place they were born in?,bio
 297,65vy4z,"Is there any validity to the claim that Epsom salts ""Increase the relaxing effects of a warm bath after strenuous exertion""? If so, what is the Underlying mechanism for this effect?",med
 298,7284qu,Nutrition Facts: Why is sodium listed instead of salt?,chem
-299,bdr3eb,Are 2FA codes random or is there an algorithm in place to make the digits more human-friendly?,computing
+299,bftuzo,Why do we weigh about the same on Saturn as We do on Earth with Saturn being a lot more massive then Earth?,astro
 300,9frrg0,"Has there ever been a case of someone donating an organ, and then getting the same organ back again (which used to be theirs)?",med
 301,5vm1i8,Trappist-1 Exoplanets Megathread!,astro
 302,8e8kuh,"How is it so that several (all?) mammals grow and lose a set of ""baby teeth"" before growing their final dentition? Why stop at two sets when other vertebrates such as sharks regenerate their teeth constantly?",bio
@@ -8021,3 +8021,229 @@
 8019,bee8ec,Why did they need so much code to take the black hole picture?,astro
 8020,bec283,"Why does curing raw fish make it safe to eat in sushi? Alternatively, why can you not just do this with other meat like chicken?",chem
 8021,be1lo2,"How is it that Antarctica was once warm and had plenty of animal and plant life, when for the entirety of winter the region gets no sunlight?",geo
+8022,bef9kd,Why do most earthquakes have a magnitude between 4.0-4.9?,geo
+8023,bef481,Why are leading zeroes in a decimal number not considered significant figures?,maths
+8024,beeso8,Does instantaneous wavefunction collapse imply an infinite derivative?,physics
+8025,be2nnq,Are there any stars that do not appear to have a magnetic field?,astro
+8026,be3lai,Why is the moon receeding and not approaching the Earth?,astro
+8027,be3lmc,"When fat is lost, does it have a priority of places where it’s lost first (face 1st, stomach 2nd, etc) or is it evenly distributed across the body?",med
+8028,beg31l,How could scientists prove that the placebo effect works even when someone is aware that they’re taking a placebo?,med
+8029,beet40,"When and why did black holes become widely accepted as real objects that definitely exist in our universe, and not some unlikely relativistic oddity on the fringes of possibility?",astro
+8030,behq75,If we can't create or destroy matter the how do we create electrons by spinning a turbine?,physics
+8031,begafj,Could someone help clarify the testing methodology for the M87 image construction algorithm?,physics
+8032,behqos,Why did they need an algorithm to take a picture of the black hole and what did the algorithm even do?,astro
+8033,begy3q,How do scientists determine the age of organisms?,bio
+8034,begxd5,"Ferrets are classified as being unrelated to mongoose and fossa, which in turn are not closely related to civets. Why do these unrelated animals look so similar?",bio
+8035,befvw0,Monty Hall variation -- what if there are two players?,maths
+8036,bek6ij,"AskScience AMA Series: I'm Robbert Dijkgraaf, mathematical physicist, author, and director of the Institute for Advanced Study, here to answer your questions about the math and physics of the universe and Big Bang. Ask me anything!",
+8037,bekgtj,"What is the state of a particle that has collapsed its wavefunction to one observer, but not another?",physics
+8038,bektoh,Why is everyone so worried about a measles outbreak of they're already vaccinated?,
+8039,belgp2,Could you move a lot of water to a mountain by boiling it at the bottom and then directing the steam up and cooling it there back in to a liquid?,
+8040,be7vso,"Is it better for musicians to practice the same thing every day, or is learning an instrument similar to bodybuilding where rest-days allow for muscle repair/growth?",med
+8041,bem1fj,"Recently, a group of astronomers discovered the universe's first molecule in a dying star, the helium hydrate ion (HeH+). How could they tell it was the universe's first molecule?",astro
+8042,belqrw,How do conservationists decide what trees and plants are local or non-local?,geo
+8043,bejg58,"When a blue whale gulps to catch prey, does it also swallow all that saltwater?",bio
+8044,bebac1,What do Fourier Series physically mean in reality?,maths
+8045,belzgb,"When animals leave their parents to establish their own lives, if they encounter the parents again in the wild, do they recognise each other and does this influence their behaviour?",bio
+8046,belgza,What is the difference between the subclass 'Theria' and the subclass 'haplorhini'?,bio
+8047,beiksj,"Neutrons last ~15 minutes on their own. How can Neutron stars, which are mostly or only Neutrons, exist?",astro
+8048,behel3,What is the environmental impact of Centralia Pennsylvania Mine Fire/Turkmenistan Door to Hell/Etc in terms of climate change?,geo
+8049,bek8ze,How does the molecular weight of a polymer affect it's ability to produce electrical charge?,chem
+8050,bejxqw,Is there a limit to how large a single living organism can be?,bio
+8051,beits0,Why do certain prescription drugs make you have suicidal ideations instead of other thoughts?,med
+8052,behs4n,What causes the squeaky sound from the saying “squeaky clean”?,physics
+8053,bef89k,What causes the placebo effect? What are the medical community’s favoured theories if no one idea is proven?,med
+8054,beeofg,Is there a real world application of finding solution to abstract mathematical problems such as the largest prime number?,maths
+8055,bee3qt,why do the planets in the solar system have a mostly circular orbit but far objects like ceres have highly elliptical orbits?,astro
+8056,bedww7,What is substrate recruitment and why are substrate recruitment mechanisms necessary?,bio
+8057,bed9v0,How do they dispose of blood test samples after they’ve been tested in the lab?,med
+8058,bei96s,Finding the force applied when initial and final velocities and Time interval is given. How do I tackle this?,physics
+8059,bepnhr,What's the difference between the electric field and the magnetic field?,physics
+8060,bermde,Why are lithium and beryllium relatively rare?,physics
+8061,bee7ka,Why does it cost billions of dollars to rebuild Notre Dame?,eng
+8062,befx7y,Why do ligers grow bigger than either of their parents?,bio
+8063,befxyu,"Why was Helium Hydride [HeH]+ the first molecule to form? Why not H2? And if it's conditions to form are so unfavorable, how does it still exist in space?",physics
+8064,beia3j,"Do stars in a binary system heat each other, or if one is significantly hotter, does it heat the other star?",astro
+8065,bes6b1,What is the fire being burned on ocean oil rigs?,geo
+8066,beloqo,Do skyscrapers slow down the earths rotation?,geo
+8067,bem47f,What would happen to the human body if it was not exposed to sunlight for a long period of time?,med
+8068,bekpnj,How do we experience pain when we look briefly at the Sun?,bio
+8069,besayn,How do E&M instruments which require extreme precision account for the Earth's magnetic field?,physics
+8070,beg4aj,"Do fish ""hold their breath?""",bio
+8071,bekgog,Are there parts of your skin that produce more vitamin D than others when hit with UV?,med
+8072,betv7c,"Besides sweating and shivering, how else do humans thermoregulate? (On our own, not with things like AC or heating)",med
+8073,betglo,Can prions affect non-nervous tissue?,med
+8074,best2g,Does light from our Sun's photosphere get redshifted before it reaches us?,physics
+8075,bei94l,"Is the black disk seen in the black hole image its event horizon? If not, how much smaller the size of the event horizon actually is?",astro
+8076,betg2s,Why does transparent plastic turn opaque and flaky after some time under the sun?,chem
+8077,berarp,What created the gasses and meteors in space after the big bang?,astro
+8078,beqk4s,Are climate zones changing due to global warming?,geo
+8079,beqhyq,"MHC, bacteria, virally infected cells, and T cells. How do relate? Does our immune system deal with one differently than the other? (clarification in text description)",bio
+8080,bewc9y,How do modern supercomputers work?,computing
+8081,bew9ft,CPUs have billions of transistors in them. Can a single transistor fail and kill the CPU? Or does one dead transistor not affect the CPU?,computing
+8082,bew86x,Where does the funding for all the fundamental physics research come from?,physics
+8083,bew1m0,How does the Sofia Flying Observatory work ? Is there a specific purpose for having an observatory that moves with respect to earth ?,astro
+8084,bey7vz,"What are muons, and how do they relate to time dilation?",physics
+8085,beybxo,What is the ratio neutron stars vs black holes in the universe?,astro
+8086,bene7w,"When a small meteorite hits the earth, is it found and studied, or is it not a big deal enough anymore that they are just left as is?",astro
+8087,bf3z5u,I was always wondering in what kind of way deaf born people are thinking. People usually do monologues. How this this work for people that never heard a word?,
+8088,bes2ox,How do breathing or feeding tubes placed down the throat get past the epiglottis?,med
+8089,bet1w5,What is happening when pasta cooks?,chem
+8090,beuw6c,Why are albino reptiles yellow but albino mammals white?,bio
+8091,bevdr9,How were the craters on the side of the moon facing earth created?,geo
+8092,bevobf,What effect do tidal forces have on the earths upper core?,geo
+8093,bf51ud,How do we taste?,med
+8094,bf4zyx,"Suppose we have a computer program randomly choosing 6 digit number. What is the probability that this program will choose a number which 3 first and 3 last digits are the same (e.g. 203203, 100100, 888888)?",maths
+8095,betsl2,"Do objects float in or on water? I know that both are grammatically correct, but what determines being in a liquid vs being on it?",physics
+8096,bf4y7z,"Why are antivaxers not being allowed in certain places, when they only pose a threat to themselves?",
+8097,bewb4q,Can loud sounds out of our hearing range damage our ears?,med
+8098,bewx1d,What are the physiological differences between humans and ocean dwelling mammals that allow them to hold their breath for so long?,bio
+8099,bey94n,How does eating certain types of food increase the risk of cancer?,med
+8100,bez71w,Was going to the moon useful? What did we learn from it?,astro
+8101,bf0fqi,What is the impact of pavement on flooding?,geo
+8102,bf1qba,How old are other planets in our solar system?,astro
+8103,bf6c95,How is the “habitable zone” of a star calculated?,geo
+8104,bf67hf,"If the nuclear fusion cycle of a star ends at iron, how do heavier elements get made?",geo
+8105,bf5r3d,Does glycogen require insulin to be used?,med
+8106,bf5jy6,"How do self-adhesive/cohesive bandages work? Why do they stick to themselves but not to skin, etc.?",med
+8107,bf5epa,Was every desert once a body of water?,geo
+8108,bf4tn1,How exactly do we get more stamina?,med
+8109,beu9fg,Do Adenine and Uracil in nucleotides combine the same way as Adenine and Thymine do when forming RNA?,bio
+8110,bewrhc,Why does a gas powered car need a transmission but an electric vehicle doesn’t?,eng
+8111,bewr4b,Why do compounds continue to react?,chem
+8112,bf0i0j,Bootes Void: Bubble Theory?,astro
+8113,bf5q42,"What actually causes light to not be focused correctly in our eyes, to cause blurred vision?",med
+8114,bf53u8,"What (as far as we know) is the physical mechanism which allows us to ""see"" our dreams?",neuro
+8115,bf4jex,"Is it true if you consume more calories than the average person, the sooner you die?",med
+8116,bf8wcv,Can ethylmercury methylate to methylmercury in the body?,med
+8117,bf8iht,Is the amount of time an organism takes to achieve sexual maturity proportional to its lifespan?,bio
+8118,bf9u9e,"If binary star systems are common, are there scenarios in which one will expire faster and turn into a black hole?",astro
+8119,bf5l9l,"When talking about climate change, the argument against it's human cause is often that the models regarding it are not validated. What does this actually mean, is it entirely true, and what other things should laymen know about model validation?",geo
+8120,bfb4mu,Why does lead absorb radiation so well? Do other materials do the same?,physics
+8121,bf9xc9,Why is Nuclear Decay a probabilistic event? Are there any environmental influences that can affect the half life of an isotope or is it an intrinsic property?,physics
+8122,bfb5vs,"How does the immune system tell ""bad"" antigens apart from ""harmless"" antigens?",bio
+8123,bfaryu,What is the inside of Europa like?,geo
+8124,bf6q6n,Is there an upper limit to the size of a black hole?,astro
+8125,bf9ywa,How is the best before date calculated on food?,chem
+8126,bfcrp8,"If every land and water animal disappeared at the same time from the Earth, would that have an effect on our orbit since the total mass would decrease?",physics
+8127,bfchmn,Why do fluffy blankets not seem as cold to the touch as bed sheets when they been in the same temperature room?,physics
+8128,bf9qie,Has nuclear weapons testing had any appreciable effect on the planet’s background radiation and/or surface temperature?,geo
+8129,bf94sd,What are those curvy distortions in the air above a hot stove?,physics
+8130,bfctar,"If neutron stars are simply made only from neutrons, where do they get fuel to still support their glow? If normal stars fuse atoms to create energy then what is the energy-producing process of neutron stars?",astro
+8131,bfcvsc,Why do some celestial bodies have atmospheres and some don't?,geo
+8132,bfcljn,Is there a limit to how fast a black hole can spin?,physics
+8133,bfap7f,How can the ocean floor become the peaks of the Andes?,geo
+8134,bfesnv,Is there a Hamiltonian for reflection?,physics
+8135,bfes9r,How are the undersea internet cables protected against the elements?,eng
+8136,bfij3n,How does computer fill the CPU registers with the data fetched from the memory?,computing
+8137,bfiihr,Why is your funny bone so sensitive?,med
+8138,bfhbyt,"Why is it that, if the power series for f'(x) converges at an endpoint of its interval of convergence, the power series for f(x) will also converge at that endpoint?",maths
+8139,bf8922,"How do dogs and other scent-reliant animals deal with candles, perfumes, smoke, etc?",bio
+8140,bf875o,Why does the Notre Dame cathedral and other churches take so long to build?,eng
+8141,bf91se,How did the moon landing spacesuits survive the ridiculous temperatures?,eng
+8142,bf9d9m,Which human ancestor do we believe was the first to tame and train dogs? How long did it take for positive behaviors to be bred?,soc
+8143,bf9nta,Do animals have a sense of relationship apart from with their mothers?,bio
+8144,bf9crp,"How do widely vaccinated diseases (such as measles) survive without a host for so long, only to pop up again?",med
+8145,bf9rtw,What happenes if the expantion joints of a bridge will be covered with asphalt?,physics
+8146,bfd8rd,Why does water ruin electronics? I think I understand why they won’t work whilst submerged but why won’t let’s say a phone work after being dried out?,eng
+8147,bfgbkp,How did engineers on Apollo 11 and similar missions test their code for bugs for the final mission without having to shoot a test rocket into orbit?,eng
+8148,bfiej9,How do scientists distinguish one species to another?,bio
+8149,bfjp1w,How does bacteria exactly evolve to be antibiotic resistant?,bio
+8150,bfkr9e,How do we know what dinosaurs' skin looked like?,bio
+8151,bf8ewx,Do dogs know that they have better hearing than humans?,psych
+8152,bf8j15,If a cow goes un-milked for an extended amount of time will the milk come out spoiled when the cow is milked?,bio
+8153,bfhj2d,Is there a maximum number of times that a liver can regrow itself? Does regrowing reduce the functionality of a liver or does it always return to 100%?,med
+8154,bflw44,"Is it possible for a single, random atom to split on its own, at any time?",physics
+8155,bfli88,Spin is an intrinsic property of a particle; how does it interact with other particles' spin if it isn't a force?,physics
+8156,bfl82u,How do computerised eye tests work?,med
+8157,bfl5p5,Do planets always form around stars?,geo
+8158,bfl38k,What about a lack of oxygen makes a cell die?,bio
+8159,beywk4,Planting trees to capture CO2 from the atmosphere is good for combatting the greenhouse effect. But what happens when the trees die and release gases as they decompose - does this cancel out the benefits?,geo
+8160,bfo52o,Why do they say that impedance slows down signals in a wire?,eng
+8161,bfot1s,Does entropy apply at the quantum level?,physics
+8162,bfnfvb,"In space, why can't you accelerate at 9.8m/s^2 (for like an hour or whatever) and then turn the vehicle around and decelerate at 9.8m/s^2 (for the same amount of time) - in order to simulate gravity?",physics
+8163,bfnknk,"Sound waves exist in the third dimension as 2d waves, in all directions. Do sound waves exist in the 4th dimension, in all directions 3 dimensionally? Are we those waves? (Serious, no really.)",physics
+8164,bf0gd7,Why are sunburnt posters usually blue?,physics
+8165,bfmxrs,"Does slow metabolism slow down your movements, reflexes, and decision making, and therefore present a disadvantage for athletes who participate in fast paced sports? How would it factor in to a sport that requires both endurance and explosiveness such as soccer and boxing?",bio
+8166,bfpnfd,Does polyurethane coatings (enamel or varnish) emit harmful substances (formaldehyde) even after polymerization? or do they become chemically neutral?,chem
+8167,bfplh5,"Is it possible to dehydrate and then rehydrate human cells, so that they are alive after rehydration?",bio
+8168,bfpit6,"If rivers erode the landmass, eventually carrying sediments into the sea, how don't rivers erode away the entire mass of continents over millions of years?",geo
+8169,bfozdu,What gives an object its colour? What exactly is happening at the molecular/atomic level?,physics
+8170,bfokp4,"So you know how some animals can “smell fear”? Well, I was wondering, do humans actually emit a scent when they’re afraid, that other animals can smell?",med
+8171,bfoc1a,Could Tardigrades Survive on Mars?,bio
+8172,bfo6m4,[Mathematics] Is there a faster way to multiply (large) numbers?,maths
+8173,bfo264,When is Dead really Dead? (What is the recent Yale study telling us?),bio
+8174,bfmsb2,Are the colours of dinosaurs depicted in books accurate?,bio
+8175,bfmgog,Why do products (food/drinks or else) have more or less longer time before the expiration date ?,chem
+8176,bfm86i,What is the difference between a retrospective cohort study and a case control study?,med
+8177,bfm0lk,Do environmental factors determine the biological sex of a baby?,bio
+8178,bfqqcl,"when radioactive material decays it emits alpha particles. why does the nuclei not split in other ways, why is it always a helium nuclei?",physics
+8179,bffkdy,How can we see the darkness of the event horizon if it is surrounded spherically by the ergosphere?,astro
+8180,bfgmrm,What is the main problem with keeping organs for transplants alive?,med
+8181,bfh6h1,Are Ashkenazi Jews more genetically related to Europeans or Middle Easterners?,soc
+8182,bflll5,How much FDG is injected for a PET scan?,med
+8183,bfh4qx,"Following the atomic blast in Hiroshima people and objects were left as shadows on walls and the ground, why?",physics
+8184,bfpbio,"Before Einstein, did nobody else consider there was a deep relationship between gravity and space time?",physics
+8185,bftew0,Why do snails have swirls on their shells?,bio
+8186,bfri1x,How long would a building need to be for it to account for the curvature of the Earth and how do architects build structures like that?,eng
+8187,bfswc7,Does glass flow or not at room temperature over time?,eng
+8188,bfufxm,How does Aloe Vera help with sunburns?,med
+8189,bfug80,The 2nd Law of Thermodynamics dictates that a black body is a perfect absorber AND emitter of light. How does a black body emit light?,physics
+8190,bfuvm6,"So in nukes, the ""atom is split"", but why is it that when they are split specifically gamma rays and neutrons are released?",physics
+8191,bfufvx,Where does the flu virus go when it's not flu season? What is the reservoir it uses to come back from each year?,med
+8192,bft6zf,"humans can over eat and beconme obese, is it possible for flight capable birds to over eat and become unable to fly?",bio
+8193,bfvavl,"When troubleshooting technology and you have to turn it off and on, why do you have to wait a few seconds or minutes before powering back on? I.e. smart tvs, routers, computers..",eng
+8194,bg83bt,How does your body know when you need to replace blood and does it 'make' the blood?,med
+8195,bfv4v6,Why can water pass through some materials but not others?,chem
+8196,bfwkaa,What causes the visual distortion on the road when you are driving over a hill?,physics
+8197,bfwwvz,How do we know that plants create and release oxygen and use carbon dioxide ?,bio
+8198,bfxccw,How does learning the abacus allow someone to do math extremely fast?,maths
+8199,bfy12g,Does the Moon have viruses/diseases/germs on it?,geo
+8200,bfyw87,Do any non-primates laugh?,bio
+8201,bfze08,Have any major/historic suspension bridges ever needed its cables (main or suspender) replaced? How do they do it?,eng
+8202,bg0hom,Does blood contain oxygen?,bio
+8203,bg0pqy,Why does very cold stuff burn the skin?,chem
+8204,bg16e5,Where do bugs go in Winter?,bio
+8205,bg27td,Is it possible for the human body to reject its own organ??,med
+8206,bg288e,Why don’t braces or retainers set off metal detectors?,eng
+8207,bg44zf,"If someone with a highly infectious disease (like Measles) walks into a doctor's office, what does the office have to do to keep others safe?",med
+8208,bg4r77,"How did the ""Mother Lode"" vein of California gold develop?",geo
+8209,bg6fyh,Are there any examples of an invasive species being introduced to an ecosystem and being beneficial for local flora and fauna?,bio
+8210,bg752w,"How is Prenatal Testing Done on twins, triplets etc?",med
+8211,bfz2r9,How do yogurt cultures survive your stomach acid?,med
+8212,bg4xco,"If the universe is expanding, is its density decreasing?",astro
+8213,bg9fom,Do transplanted organs make new cells with the donor's DNA forever? Or does the recipient's DNA start to take over the creation of new cells for the transplanted organ?,bio
+8214,bg8yvr,"Would an object with twice the mass (and size) of the moon, situated twice the distance away from Earth that the moon is now, have the same effect on the tides as the moon?",astro
+8215,bgf0is,"AskScience AMA Series: We're the researchers behind the ""faking a smile"" and drinking study, ask us anything!",
+8216,bgd4a0,"What is so ""special"" about the toe that it produces a toe nail? Why can't other places of skin do this, like my elbow?",med
+8217,bgf7am,Why can cannabis be detected in urine weeks after use while other drug traces dissipate after days? What properties set it apart in that regard?,med
+8218,bgcp8p,Do plants of the same size give off the same amount of oxygen?,bio
+8219,bgc3hf,How could you measure activation energy of KNO3 and sugar model rocket fuel in a lab setting and how would this affect the ignition time?,chem
+8220,bgbswl,How exactly would a bomb tech die from an explosion?,med
+8221,bgbe9w,When should you consider global over local symmetry (or vice versa) when it comes to solid or fluid materials?,physics
+8222,bgbbqu,How does alcohol increase blood pressure?,med
+8223,bgb4xo,"If all the carbonation from a bottle of soda was removed, would the bottle have a smaller volume of soda? How much less would it weigh? How are bubbles ""hidden""in the soda?",chem
+8224,bgb2wv,How do we know that the universe is expanding?,astro
+8225,bgamw3,Do the proteins and phospholipids of cell walls and organelles have to be repaired often?,bio
+8226,bgahjt,Do the proportions of nutrients change in a fruit as it ripens?,bio
+8227,bgawrr,How come when we squint at a light it make a plus shape?,med
+8228,bg3ggb,How much Dark Matter (as a percentage of our Solar Mass) is within our Solar gravitational influence?,astro
+8229,bg3y12,Why are cylindrical tanker trailers used to transport certain goods rather than cuboid shaped trailers?,eng
+8230,bggsgw,What do space stations do to get rid of excess heat?,eng
+8231,bgczvz,"So another earthquake hit the PH today. Just 1 day apart, but from different places. Is there a connection between the 2? Should we be worried here in the PH for another big one?",geo
+8232,bggyo1,"Is there any evidence that the standard work week affects weather, and if so, how?",geo
+8233,bggvho,What did the Russians speak before the Cyrillic alphabet was created?,soc
+8234,bganhn,Does having a prosthetic limb reduce the effects or feelings of phantom pain?,med
+8235,bg81ol,What enzyme cleaves MAP (magnesium ascorbyl phosphate)?,bio
+8236,bg7jc0,It is common knowledge that Honeybees are disappearing in alarming numbers. But it is also known that all insects are disappearing in alarming numbers. Is there a connection? Are bees disappearing at the same rate as other insects?,geo
+8237,bgjxzy,How does the squish squash illusion work?,neuro
+8238,bgjgzb,What makes your skin red after a sunburn?,med
+8239,bgbvxp,How does hot air balloon travel work?,physics
+8240,bghez7,Did the creation of the Panama Canal mess with the eco system of the oceans? IE the combining of two previously separated bodies of water,geo
+8241,bginfv,How do gas planets not diffuse into space? Do they have a non-gaseous core?,astro
+8242,bgiyfb,How is the CNOT gate in quantum teleportation allowed to break entanglement?,physics
+8243,bgl5no,"I am a student and when i was done learning for my chemistry test i was wondering how people measured atom masses, for example magnesium (Mg) has a mass of 24,3U (according to my textbook) How did scientists scale the weigh of an atom?",chem
+8244,bgmdrj,"When pollen reaches the stigma, how does it get to the ovules?",bio
+8245,bgm3vo,Why's it important for a person with CIP (Congenital Insensitivity to Pain) to keep themselves hydrated all the time?,med
+8246,bglqpd,What Is Different In The Processes Of Superheating Sand To Get Silicon Vs Glass?,geo
+8247,bgjf5o,How reactive is francium?,chem
