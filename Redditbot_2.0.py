@@ -160,10 +160,7 @@ def Predict_post(dat, tags, Title):
 
 
 def main():
-    reddit = praw.Reddit(user_agent='Comment Extraction (by /u/USERNAME)',
-                     client_id='plLFnSdBy7b8ZQ', client_secret='_fv-EVVpz_m4iekd9a2EFsfJ66E',
-                     username=base64.b64decode('UHJpdmF0ZUFza1NjaWVuY2VCb3Q='), 
-                     password=(base64.b64decode("SUxvdmVMaW5kc2V5MTIz")))
+    
     askscience = reddit.subreddit('askscience')
     subs = ['physics', 'bio', 'med', 'geo', 'chem', 'astro', 'eng']
     data = pd.read_csv(r'askscience_Data.csv')
