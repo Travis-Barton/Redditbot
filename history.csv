@@ -3379,3 +3379,17 @@ I was curious about this and did some googling and couldn't find anything specif
 3283,bj5892,Is it possible to split a helium nucleus (or an alpha particle) in half?,physics,physics,1.0,2019-04-30,
 3284,bj6a0t,Why does a gases Mach Number affect whether it’s velocity increases or decreases when entering a convergent or divergent nozzle?,physics,physics,1.0,2019-04-30,"I’m looking for an intuitive explanation. The [math](https://www.grc.nasa.gov/WWW/BGH/nozzled.html) makes perfect sense to me but I’m trying to get a better feel for why it happens. It must have something to do with whether or not a pressure wave can propagate through the gas, but I can’t quite put my finger on why that would make a difference."
 3285,bizopp,Could hypothetical supersymmetric elementary particles of the standard model also be candidates for dark matter?,physics,physics,1.0,2019-04-30,
+3286,binp6h,Would a block of doped semiconductor connected to a metal wire gain electric charge?,physics,physics,1.0,2019-04-30,"_(I asked the same question [at Physics Stack Exchange][so] and [elsewhere on Reddit][re] but, looking at the answer rate and quality in the semiconductor physics tag, I can only estimate my chances at getting an adequate answer as slim. I hope the more knowledgeable fellow Redditors will be kindly inclined to hear me out as I proceed.)_
+
+[so]: https://physics.stackexchange.com/q/476634
+[re]: https://www.reddit.com/r/AskPhysics/comments/bimyz9/would_a_block_of_doped_semiconductor_connected_to/?utm_source=share&utm_medium=web2x
+
+* * *
+
+Consider a block of negatively doped semiconductor connected to a large section of metal wire.
+
+_(I am assuming a negatively doped semiconductor for specificity, while implying a similar, though reverse, effect with a positively doped block.)_
+
+* Is it correct to think that the electron gas pressure in the semiconductor is somewhat elevated and, therefore, given an opportunity, electrons would tend to rather leave than enter, thus creating a slight positive electric charge in the semiconductor and a slight negative charge in the surrounding wiring?
+* Would the same effect persist in a circuit if electric current is flowing through the semiconductor block?
+* Assuming such effect does manifest, how would it be quantitatively estimated?"
