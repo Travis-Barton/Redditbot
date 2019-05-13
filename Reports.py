@@ -57,9 +57,9 @@ while True:
                           as I gather more data! \n This week, I have classified {} posts, and am doing more 
                           everyday. In general, I have an accuracy around {}% and 
                           have classified {} posts in total. I use Google's [natural language proccessing
-                          auto ML software]{www.console.cloud.google.com/natural-language} to classify posts.
+                          auto ML software](www.console.cloud.google.com/natural-language) to classify posts.
                           Travis (my creator) has developed another method for dealing with this data that involves a natural 
-                          language proccessing technique called ['word vectors']{www.nlp.stanford.edu/projects/glove/},
+                          language proccessing technique called ['word vectors'](www.nlp.stanford.edu/projects/glove/),
                           a variable reduction method
                           invented by Travis Barton called Feed Networks, and SVM. You can read all
                           about it under Passion Projects on his 

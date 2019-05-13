@@ -16,10 +16,7 @@ import time
 
 
 # Authentication: http://praw.readthedocs.io/en/latest/getting_started/authentication.html
-reddit = praw.Reddit(user_agent='Comment Extraction (by /u/USERNAME)',
-                     client_id='b8unlbKK1rWOow', client_secret='FuFwla268qevA5Ju1MgRPs2Sihg',
-                     username=base64.b64decode('bWF0aF9pc19teV9yZWxpZ2lvbg=='), 
-                     password=(base64.b64decode("U2lyemlwcHkx")))
+from Reddit_instance import reddit
 
 def submissions_pushshift_praw(subreddit, start=None, end=None, limit=100, extra_query=""):
     """
@@ -66,8 +63,45 @@ def submissions_pushshift_praw(subreddit, start=None, end=None, limit=100, extra
     return matching_praw_submissions
 
 
-test = submissions_pushshift_praw("askscience", start = 1507512594, limit = 10000)
-for sub in test:
-    print(sub.title)
-    print(sub.link_flair_css_class)
-    print('\n')
+test = submissions_pushshift_praw("askscience", start = time.time() - 126144000, limit = 10000)
+data = pd.read_csv('~/Documents/GitHub/Redditbot/askscience_Data.csv')
+data = data.iloc[:,1:]
+k = 0
+for post in test:
+    temp = reddit.submission(id = post.id)
+    if (data['id'].str.contains(post.id).any() == False and temp.link_flair_css_class != None):
+        #print(temp.link_flair_css_class)
+        i = data.shape[0]
+        data.loc[i,:] = [temp.id, temp.title, temp.link_flair_css_class]
+        k += 1
+    if k == 1000:
+        break
+    
+
+data.to_csv('temp.csv')
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
