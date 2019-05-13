@@ -15,10 +15,7 @@ import time
 import requests
 import pandas as pd
 import warnings
-reddit = praw.Reddit(user_agent='Comment Extraction (by /u/USERNAME)',
-                     client_id='bepL4c1oHsSEIA', client_secret='Mj6pnYQS1QB6Vh1Fyt1cXSb1EF8',
-                     username=base64.b64decode('RHJpbGxTYXJnZW50Qm90'), 
-                     password=(base64.b64decode("SUxvdmVMaW5kc2V5MTIz")))
+from Reddit_instance import reddit
 
 
 mysub = reddit.subreddit('travsbots')
@@ -36,7 +33,7 @@ while True:
                 if numpreds == 0:
                     post.reply('Private Askscience Bot is still awaiting its first post, Sir!')
                 else:
-                    post.reply('Private Askscience Bot has achieved an accuracy of %{} out of {} posts, Sir! \n In his last 100 posts, he has achieved an accuracy of {}.'.format(
+                    post.reply('Private Askscience Bot has achieved an accuracy of {}% out of {} posts, Sir! \n In his last 100 posts, he has achieved an accuracy of {}%.'.format(
                             np.round(correct/numpreds, 4)*100, numpreds,
                             round(sum(history.loc[(history.shape[0]-101):(history.shape[0]-1), 'correct'])/100, 4)*100))
     except Exception as e:
