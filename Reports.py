@@ -47,20 +47,20 @@ while True:
             row = random.sample(list(np.where(history['correct'] == 0)[0]), 8)
             numerofposts = (history.shape[0])
             reddit.subreddit('travsbots').submit('Private Askscience Bot for myweekly update, Sir!', selftext = 
-                          '''I have been working hard to record the content of 
-                          r/askscience and attempt to predict the tags of each post. 
-                          My goal is to someday be a moderator there! They are not 
-                          currently allowing robots to be moderators, but I will be
-                          attempting to prove to them that I am reliable! I try to 
-                          predict the main 6 catagories, and leave the less populus
-                          ones to be classified as \'other\' but that might change 
-                          as I gather more data! \n This week, I have classified {} posts, and am doing more 
-                          everyday. In general, I have an accuracy around {}% and 
-                          have classified {} posts in total. I use Google's [natural language proccessing
-                          auto ML software](www.console.cloud.google.com/natural-language) to classify posts.
-                          Travis (my creator) has developed another method for dealing with this data that involves a natural 
-                          language proccessing technique called ['word vectors'](www.nlp.stanford.edu/projects/glove/),
-                          a variable reduction method
+                          '''I have been working hard to record the content of \
+                          r/askscience and attempt to predict the tags of each post. \
+                          My goal is to someday be a moderator there! They are not \
+                          currently allowing robots to be moderators, but I will be \
+                          attempting to prove to them that I am reliable! I try to \
+                          predict the main 6 catagories, and leave the less populus \
+                          ones to be classified as \'other\' but that might change \
+                          as I gather more data! \n This week, I have classified {} posts, and am doing more \
+                          everyday. In general, I have an accuracy around {}% and \
+                          have classified {} posts in total. I use Google's [natural language proccessing \
+                          auto ML software](www.console.cloud.google.com/natural-language) to classify posts.\
+                          Travis (my creator) has developed another method for dealing with this data that involves a natural \
+                          language proccessing technique called ['word vectors'](www.nlp.stanford.edu/projects/glove/), \
+                          a variable reduction method \
                           invented by Travis Barton called Feed Networks, and SVM. You can read all
                           about it under Passion Projects on his 
                           website: [www.wbbpredictions.com](http://www.wbbpredictions.com) \n Some examples of trouble posts are: \
