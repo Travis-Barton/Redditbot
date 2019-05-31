@@ -11,8 +11,8 @@ Created on Fri Jan 25 11:41:10 2019
 
 from Reddit_instance import reddit
 import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+#reload(sys)
+#sys.setdefaultencoding('utf8')
 import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "jupyter-platform-008d64ef4bd4.json"
 from google.cloud import automl_v1beta1
@@ -28,7 +28,7 @@ from Reddit_instance import s3
 
  
 project_id = 'jupyter-platform'
-model_id = 'TCN3334214431275684076'
+model_id = 'TCN612148418293027439'
 
 def get_prediction(content, project_id, model_id):
   prediction_client = automl_v1beta1.PredictionServiceClient()
