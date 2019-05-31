@@ -9,10 +9,10 @@ Created on Fri Jan 25 11:41:10 2019
 ## Reddit remade
 
 
-from Reddit_instance import reddit
+from Reddit_instance import *
 import sys
-#reload(sys)
-#sys.setdefaultencoding('utf8')
+reload(sys)
+sys.setdefaultencoding('utf8')
 import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "jupyter-platform-008d64ef4bd4.json"
 from google.cloud import automl_v1beta1
@@ -22,7 +22,7 @@ import numpy as np
 import datetime
 import time
 import boto3
-from Reddit_instance import s3
+#from Reddit_instance import s3
 
 
 
@@ -47,14 +47,13 @@ def disagree(post_title, truth, guess, link, i):
     try:
         reddit.subreddit('travsbots').submit(title, selftext = body)
     except Exception as e:
-        print(u"I came accross an error general, I think I am doing this too much. I'll try restarting in 60 seconds: \n {} \n".format(e))
+        print(u"I came accross an error general, I think I am doing this too much. I'll try restarting in {} seconds: \n {} \n".format((i+1)*60, e))
         i += 1
         time.sleep(60*i )
         disagree(post_title, truth, guess, link, i)
 
 
 def main():
-    askscience = reddit.subreddit('askscience')
     subs = {'0':'astro', 
             '1':'bio', 
             '2':'chem', 
@@ -63,17 +62,17 @@ def main():
             '5':'med', 
             '6':'other', 
             '7':'physics'}
+    askscience = reddit.subreddit('askscience')
     obj = s3.get_object(Bucket='redditbot-storage', Key='askscience_Data.csv')
     data = pd.read_csv(obj['Body'])
-#    data = pd.read_csv('askscience_Data.csv')
     data = data.iloc[:, 1:]
     print(data.shape)
     obj = s3.get_object(Bucket='redditbot-storage', Key='history.csv')
     history = pd.read_csv(obj['Body'])
-#    history = pd.read_csv('history.csv')
     history = history.iloc[:,1:]
     print(history.shape)
     T = 0
+    l = 0
     while True:
         try:
             for post in askscience.stream.submissions(skip_existing = False):
@@ -85,22 +84,24 @@ def main():
                         post.link_flair_css_class = 'meta'
                     data.loc[i,:] = [post.id, post.title, post.link_flair_css_class]
                     pred = get_prediction(post.title, project_id, model_id).payload[0].display_name
-                    if subs[pred] == post.link_flair_css_class or ((post.link_flair_css_class not in subs.values()) and subs[pred] == 'other'): 
-                        print(u'Correct! \n My running acc is: {} % \n My overall acc is: {} %'.format(
+                    if pred == post.link_flair_css_class or ((post.link_flair_css_class not in subs.values()) and pred == 'other'): 
+                        print(u'Correct! \n My guess: {} \n The Mods: {} \n My running acc is: {} % \n My overall acc is: {} % \n'.format(
+                                pred,
+                                post.link_flair_css_class,
                                 sum(history['correct'][-100:]),
                                 np.round(100*sum(history['correct'])/history.shape[0], 2)))
                         temp = 1.0
                     else:
-                        print(u'Wrong! \n My running acc is: {} % \n My overall acc is: {} % \n Your guess: {} \n The truth: {}'.format(
+                        print(u'Wrong! \n My running acc is: {} % \n My overall acc is: {} % \n Your guess: {} \n The Mods: {} \n'.format(
                                 sum(history['correct'][-100:]),
                                 np.round(100*sum(history['correct'])/history.shape[0], 2),
-                                subs[pred],
+                                pred,
                                 post.link_flair_css_class))
                         temp = 0.0
-                        disagree(post.title, post.link_flair_css_class, subs[pred], post.shortlink, 0)
+                        disagree(post.title, post.link_flair_css_class, pred, post.shortlink, 0)
                        
                             
-                    history.loc[j, :] = [post.id, post.title, subs[pred],
+                    history.loc[j, :] = [post.id, post.title, pred,
                                  post.link_flair_css_class, temp, datetime.datetime.now().date(),
                                  post.selftext]
                     history.to_csv(u'history.csv')
@@ -111,7 +112,7 @@ def main():
                         s3.upload_file(filename, bucket_name, filename)
                         filename = u'history.csv'
                         s3.upload_file(filename, bucket_name, filename)
-                        l += 1
+                    l += 1
 
                     
         except Exception as e:
