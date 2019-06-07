@@ -11,8 +11,8 @@ Created on Fri Jan 25 11:41:10 2019
 
 from Reddit_instance import reddit
 import sys
-#reload(sys)
-#sys.setdefaultencoding('utf8')
+reload(sys)
+sys.setdefaultencoding('utf8')
 import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "jupyter-platform-008d64ef4bd4.json"
 from google.cloud import automl_v1beta1
