@@ -8,11 +8,14 @@ Created on Fri Jan 25 11:41:10 2019
 
 ## Reddit remade
 
+import logging
+
+logging.basicConfig(filename = 'Asksciencelog.log', format = '%(asctime)-5s - %(levelname)-5s: \n%(message)s\n\n\n', level = logging.INFO)
 
 from Reddit_instance import *
 import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+#reload(sys)
+#sys.setdefaultencoding('utf8')
 import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "jupyter-platform-008d64ef4bd4.json"
 from google.cloud import automl_v1beta1
@@ -22,7 +25,10 @@ import numpy as np
 import datetime
 import time
 import boto3
-#from Reddit_instance import s3
+
+
+logging.info('File Initiated')
+
 
 
 
@@ -82,41 +88,52 @@ def main():
                     print('\n {} \n'.format(post.title))
                     if post.link_flair_css_class == None:
                         post.link_flair_css_class = 'meta'
-                    data.loc[i,:] = [post.id, post.title, post.link_flair_css_class]
+                    #data.loc[i,:] = [post.id, post.title, post.link_flair_css_class]
                     pred = get_prediction(post.title, project_id, model_id).payload[0].display_name
-                    if pred == post.link_flair_css_class or ((post.link_flair_css_class not in subs.values()) and pred == 'other'): 
-                        print(u'Correct! \n My guess: {} \n The Mods: {} \n My running acc is: {} % \n My overall acc is: {} % \n'.format(
-                                pred,
+                    if pred == post.link_flair_css_class or ((post.link_flair_css_class not in subs.values()) and pred == 'other'):
+                        correct_message = u'Correct! \n The Label: {} \n My running acc is: {} % \n My overall acc is: {} % \n'.format(
                                 post.link_flair_css_class,
                                 sum(history['correct'][-100:]),
-                                np.round(100*sum(history['correct'])/history.shape[0], 2)))
+                                np.round(100*sum(history['correct'])/history.shape[0], 2))
+                        logging.info(correct_message)
+                        print(correct_message)
                         temp = 1.0
                     else:
-                        print(u'Wrong! \n My running acc is: {} % \n My overall acc is: {} % \n Your guess: {} \n The Mods: {} \n'.format(
+                        wrong_message = u'Wrong! \n My running acc is: {} % \n My overall acc is: {} % \n Your guess: {} \n The Mods: {} \n'.format(
                                 sum(history['correct'][-100:]),
                                 np.round(100*sum(history['correct'])/history.shape[0], 2),
                                 pred,
-                                post.link_flair_css_class))
+                                post.link_flair_css_class)
+                        logging.info(wrong_message)
+                        print(wrong_message)
                         temp = 0.0
                         disagree(post.title, post.link_flair_css_class, pred, post.shortlink, 0)
                        
-                            
+                           
+                    data.loc[i,:] = [post.id, post.title, post.link_flair_css_class]
                     history.loc[j, :] = [post.id, post.title, pred,
                                  post.link_flair_css_class, temp, datetime.datetime.now().date(),
                                  post.selftext]
                     history.to_csv(u'history.csv')
                     data.to_csv(u'askscience_Data.csv')
-                    if l % 4 == 0:
+                    if l % 2 == 0:
                         filename = u'askscience_Data.csv'
                         bucket_name = u'redditbot-storage'
                         s3.upload_file(filename, bucket_name, filename)
                         filename = u'history.csv'
                         s3.upload_file(filename, bucket_name, filename)
+                        filename = u'Asksciencelog.log'
+                        s3.upload_file(filename, bucket_name, filename)
                     l += 1
 
                     
         except Exception as e:
-            print(u"I came accross an error general. I'll try restarting in 60 seconds: \n {} \n".format(e))
+            error_message = u"I came accross an error general. I'll try restarting in 60 seconds: \n {} \n".format(e)
+            logging.error(error_message)
+            print(error_message)
+            filename = u'Asksciencelog.log'
+            bucket_name = u'redditbot-storage'
+            s3.upload_file(filename, bucket_name, filename)
         time.sleep(60)
                 
 
