@@ -107,7 +107,7 @@ def main():
                         logging.info(wrong_message)
                         print(wrong_message)
                         temp = 0.0
-                        disagree(post.title, post.link_flair_css_class, pred, post.shortlink, 0)
+                        #disagree(post.title, post.link_flair_css_class, pred, post.shortlink, 0)
                        
                            
                     data.loc[i,:] = [post.id, post.title, post.link_flair_css_class]
