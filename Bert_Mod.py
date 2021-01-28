@@ -81,7 +81,7 @@ def main():
     l = 0
     while True:
         try:
-            for post in askscience.stream.submissions(skip_existing = False):
+            for post in askscience.stream.submissions(skip_existing=False):
                 if (data['id'].str.contains(post.id).any() == False):
                     i = data.shape[0]
                     j = history.shape[0]
@@ -138,13 +138,3 @@ def main():
                 
 
 main()
-
-
-
-
-
-
-    
-    
-    
-    
