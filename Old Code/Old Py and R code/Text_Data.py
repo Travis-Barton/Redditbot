@@ -23,8 +23,8 @@ import requests
 
 reddit = praw.Reddit(user_agent='Comment Extraction (by /u/USERNAME)',
                      client_id='b8unlbKK1rWOow', client_secret='FuFwla268qevA5Ju1MgRPs2Sihg',
-                     username=base64.b64decode('bWF0aF9pc19teV9yZWxpZ2lvbg=='), 
-                     password=(base64.b64decode("U2lyemlwcHkx")))
+                     username='not available, 
+                     password='not available')
 askscience = reddit.subreddit('AskScience')
 
 
