@@ -22,7 +22,7 @@ import requests
 #Setup... This contains passwords and access to my reddit account, So I will not be sharing the data unedited. 
 
 reddit = praw.Reddit(user_agent='Comment Extraction (by /u/USERNAME)',
-                     client_id='b8unlbKK1rWOow', client_secret='FuFwla268qevA5Ju1MgRPs2Sihg',
+                     client_id='hide', client_secret='hide',
                      username='not available, 
                      password='not available')
 askscience = reddit.subreddit('AskScience')
